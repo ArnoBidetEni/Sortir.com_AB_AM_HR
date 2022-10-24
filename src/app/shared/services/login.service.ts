@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private loggedIn$: Subject<boolean> = new Subject();
-  get isLoggedIn$(): Observable<boolean> {
-    return this.loggedIn$.asObservable();
+  private loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  get isLoggedIn$(): BehaviorSubject<boolean> {
+    return this.loggedIn$;
   }
 
   constructor() {

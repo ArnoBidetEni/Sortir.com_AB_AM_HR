@@ -6,16 +6,17 @@ import { LoginComponent } from './core/profile/login/login.component';
 import { ProfileDisplayComponent } from './core/profile/profile-display/profile-display.component';
 import { RegisterComponent } from './core/profile/register/register.component';
 import { VillesComponent } from './core/villes/villes.component';
+import { LoginGuard } from './shared/guards/login.guard';
 
 const routes: Routes = [
-  { path: "home", component: HomeComponent },
-  { path: "villes", component: VillesComponent },
-  { path: "campus", component: CampusComponent },
+  { path: "home", component: HomeComponent, canActivate: [LoginGuard] },
+  { path: "villes", component: VillesComponent, canActivate: [LoginGuard] },
+  { path: "campus", component: CampusComponent, canActivate: [LoginGuard] },
   {
     path: "profile", children: [
-      { path: "", component: ProfileDisplayComponent, pathMatch: "full" },
+      { path: "", component: ProfileDisplayComponent, pathMatch: "full", canActivate: [LoginGuard] },
       { path: "login", component: LoginComponent },
-      { path: "register", component: RegisterComponent }
+      { path: "register", component: RegisterComponent, canActivate: [LoginGuard] }
     ]
   }
 ];
