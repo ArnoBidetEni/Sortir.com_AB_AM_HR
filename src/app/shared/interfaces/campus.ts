@@ -1,4 +1,4 @@
-export interface Campus{
-    idCampus : number,
-    nom : string
+export interface Campus {
+    campusId: number,
+    name: string
 }

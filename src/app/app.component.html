@@ -25,5 +25,10 @@
   <ng-container *ngFor="let navLink of navLinks">
     <button mat-button [routerLink]="navLink.link" routerLinkActive="active">{{navLink.label}}</button>
   </ng-container>
-  <button mat-button>Se déconnecter</button>
+  <ng-container *ngIf="(loginService.isLoggedIn$| async); else login">
+    <button mat-button>Se déconnecter</button>
+  </ng-container>
+  <ng-template #login>
+    <button mat-button [routerLink]="'profile/login'" routerLinkActive="active">Login</button>
+  </ng-template>
 </ng-template>

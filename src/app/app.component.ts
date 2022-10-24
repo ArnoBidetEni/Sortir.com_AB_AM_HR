@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BreakpointService } from './shared/services/breakpoint.service';
+import { LoginService } from './shared/services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,7 @@ import { BreakpointService } from './shared/services/breakpoint.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'front';
-  constructor(public breakpointService: BreakpointService){}
+  constructor(public breakpointService: BreakpointService, public loginService: LoginService){}
   navLinks : {link:string,label:string}[] = [
     {
       link:"home",

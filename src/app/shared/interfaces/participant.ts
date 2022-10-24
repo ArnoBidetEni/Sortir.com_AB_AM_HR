@@ -1,10 +1,10 @@
-export interface Participant{
-    idParticipant : number,
-    nom : string,
-    prenom : string,
-    telephone : string,
-    mail : string,
-    motPasse : string,
-    administrateur : boolean,
-    actif : boolean
+export interface Participant {
+    participantId: number,
+    lastName: string,
+    firstName: string,
+    phoneNumber: string,
+    mail: string,
+    password: string,
+    administrator: boolean,
+    active: boolean
 }

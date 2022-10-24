@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Ville, villesTestData } from '../interfaces/ville';
+import { City, citiesTestData } from '../interfaces/city';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VilleService {
+export class CityService {
 
   constructor() { }
 
-  getVille(idVille : number) : Observable<Ville>{
-    return of(villesTestData[0]);
+  getCity(cityId: number): Observable<City> {
+    return of(citiesTestData[0]);
   }
-  getVilles(idVille : number) : Observable<Ville>{
-    return of(villesTestData[0]);
+  getCitys(cityId: number): Observable<City> {
+    return of(citiesTestData[0]);
   }
-  createVille(ville : Ville) : Observable<Ville>{
-    return of(ville);
+  createCity(city: City): Observable<City> {
+    return of(city);
   }
-  updateVille(idVille : number, ville : Ville) {
-    
+  updateCity(cityId: number, city: City) {
+
   }
-  deleteVille(idVille:number){
+  deleteCity(cityId: number) {
 
   }
 }
