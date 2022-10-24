@@ -13,6 +13,7 @@ import { CampusComponent } from './core/campus/campus.component';
 import { CreateComponent } from './core/sortie/create/create.component';
 import { DisplayComponent } from './core/sortie/display/display.component';
 import { UpdateComponent } from './core/sortie/update/update.component';
+import { ProfileModule } from './core/profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UpdateComponent } from './core/sortie/update/update.component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]
