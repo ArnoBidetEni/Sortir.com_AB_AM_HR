@@ -8,9 +8,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { VillesComponent } from './core/villes/villes.component';
+import { CampusComponent } from './core/campus/campus.component';
+import { CreateComponent } from './core/sortie/create/create.component';
+import { DisplayComponent } from './core/sortie/display/display.component';
+import { UpdateComponent } from './core/sortie/update/update.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VillesComponent,
+    CampusComponent,
+    CreateComponent,
+    DisplayComponent,
+    UpdateComponent,
   ],
   imports: [
     BrowserModule,

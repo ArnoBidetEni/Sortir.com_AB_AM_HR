@@ -22,9 +22,8 @@
 
 
 <ng-template #nav_content>
-  <button mat-button>Villes</button>
-  <button mat-button>Campus</button>
-  <button mat-button>Accueil</button>
-  <button mat-button>Mon profil</button>
+  <ng-container *ngFor="let navLink of navLinks">
+    <button mat-button [routerLink]="navLink.link" routerLinkActive="active">{{navLink.label}}</button>
+  </ng-container>
   <button mat-button>Se déconnecter</button>
 </ng-template>
