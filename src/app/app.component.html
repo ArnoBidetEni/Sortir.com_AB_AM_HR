@@ -1,2 +1,30 @@
+<mat-drawer-container class="h-full" autosize>
+  <mat-drawer #drawer>
+    <div class="flex flex-col">
+      <ng-container *ngTemplateOutlet="nav_content"></ng-container>
+    </div>
+  </mat-drawer>
 
-<router-outlet></router-outlet>
+  <ng-container mat-drawer-content>
+    <mat-toolbar color="primary">
+      <button *ngIf="breakpointService.isSmallDevice$ | async" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+      </button>
+      <span>Logo Sortir.com</span>
+      <div class="ml-auto"></div>
+      <ng-container *ngIf="!(breakpointService.isSmallDevice$ | async)">
+        <ng-container *ngTemplateOutlet="nav_content"></ng-container>
+      </ng-container>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </ng-container>
+</mat-drawer-container>
+
+
+<ng-template #nav_content>
+  <button mat-button>Villes</button>
+  <button mat-button>Campus</button>
+  <button mat-button>Accueil</button>
+  <button mat-button>Mon profil</button>
+  <button mat-button>Se déconnecter</button>
+</ng-template>
