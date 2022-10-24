@@ -7,3 +7,12 @@ Node 16.18.0 : https://nodejs.org/en/
 PHP : 8.1.11
 Composer : 2.4.3 : https://getcomposer.org/download/
 
+## Mise en place
+
+### Front
+
+```bash
+cd front
+npm i
+ng s
+```
