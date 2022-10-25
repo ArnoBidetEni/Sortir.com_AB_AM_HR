@@ -8,21 +8,19 @@ import { LoginService } from './shared/services/login.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public breakpointService: BreakpointService, public loginService: LoginService){}
-  navLinks : {link:string,label:string}[] = [
-    {
-      link:"home",
-      label:"Accueil"
-    },
-    {
-      link:"villes",
-      label:"Villes"
-    },{
-      link:"campus",
-      label:"Campus"
-    },{
-      link:"profile",
-      label:"Mon profil"
-    }
+  constructor(public breakpointService: BreakpointService, public loginService: LoginService) { }
+  navLinks: { link: string, label: string }[] = [{
+    link: "home",
+    label: "Accueil"
+  }, {
+    link: "villes",
+    label: "Villes"
+  }, {
+    link: "campus",
+    label: "Campus"
+  }, {
+    link: "profile",
+    label: "Mon profil"
+  }
   ]
 }

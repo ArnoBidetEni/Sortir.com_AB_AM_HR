@@ -1,0 +1,60 @@
+<div class="flex justify-end p-4">
+  <mat-card class="flex flex-col gap-2">
+    <span>
+      Date du jour : {{ todayDate | date:'d/M/y' }}
+    </span>
+    <span>Participant : {{''}}</span>
+  </mat-card>
+</div>
+<div>
+  <p>Filtrer les sorties</p>
+  <form [formGroup]="filterGroup" class="flex gap-2 flex-wrap">
+    <div class="flex flex-col" style="flex-grow: 4;">
+      <mat-form-field appearance="fill">
+        <mat-label>Campus</mat-label>
+        <mat-select [formControl]="filterGroup.controls.campus" [value]="campusList[0]">
+          <mat-option *ngFor="let campus of campusList" [value]="campus">
+            {{campus}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="flex gap-2 flex-wrap">
+        <mat-form-field class="flex-grow" appearance="fill">
+          <mat-label>Après le</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="flex-grow" appearance="fill">
+          <mat-label>Avant le</mat-label>
+          <input matInput [matDatepicker]="picker2">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2 flex-grow">
+      <mat-checkbox [formControl]="filterGroup.controls.excursionOrganisator"
+        [checked]="filterGroup.controls.excursionOrganisator.value">
+        Sorties dont je suis l'organisateur/trice
+      </mat-checkbox>
+      <mat-checkbox [formControl]="filterGroup.controls.excursionSubscribed"
+        [checked]="filterGroup.controls.excursionSubscribed.value">
+        Sorties auxquelles je suis inscrit/e
+      </mat-checkbox>
+      <mat-checkbox [formControl]="filterGroup.controls.excursionNotSubscribed"
+        [checked]="filterGroup.controls.excursionNotSubscribed.value">
+        Sorties auxquelles je ne suis pas inscrit/e
+      </mat-checkbox>
+      <mat-checkbox [formControl]="filterGroup.controls.excursionPassed"
+        [checked]="filterGroup.controls.excursionPassed.value">
+        Sorties passées
+      </mat-checkbox>
+      <button mat-raised-button color="accent" type="submit" class="self-{{(breakpointService.isSmallDevice$ | async)? 'stretch':'start'}}">Rechercher</button>
+    </div>
+  </form>
+</div>
+
+<app-excursions-table class="mt-4" [excursions]="(filteredList$ | async) ?? undefined"></app-excursions-table>

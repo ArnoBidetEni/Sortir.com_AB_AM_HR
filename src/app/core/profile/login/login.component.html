@@ -11,7 +11,7 @@
     <mat-icon matSuffix>vpn_key</mat-icon>
   </mat-form-field>
   <div class="flex gap-4 justify-center">
-    <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="primary">Connexion</button>
+    <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="primary" class="self-center">Connexion</button>
     <div class="flex flex-col gap-2 items-end">
       <mat-checkbox [formControl]="loginForm.controls.rememberMe"
         [checked]="loginForm.controls.rememberMe.value">

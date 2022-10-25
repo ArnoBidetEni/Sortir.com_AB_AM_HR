@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CampusComponent } from './core/campus/campus.component';
-import { HomeComponent } from './core/home/home.component';
 import { LoginComponent } from './core/profile/login/login.component';
 import { ProfileDisplayComponent } from './core/profile/profile-display/profile-display.component';
 import { RegisterComponent } from './core/profile/register/register.component';
+import { SortieDisplayComponent } from './core/sortie/sortie-display/sortie-display.component';
 import { VillesComponent } from './core/villes/villes.component';
 import { LoginGuard } from './shared/guards/login.guard';
 
 const routes: Routes = [
-  { path: "home", component: HomeComponent, canActivate: [LoginGuard] },
+  { path: "", component: SortieDisplayComponent, pathMatch: "full", canActivate: [LoginGuard] },
   { path: "villes", component: VillesComponent, canActivate: [LoginGuard] },
   { path: "campus", component: CampusComponent, canActivate: [LoginGuard] },
   {
