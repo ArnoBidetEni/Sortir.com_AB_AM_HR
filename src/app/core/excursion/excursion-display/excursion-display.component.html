@@ -1,9 +1,9 @@
-<div class="flex justify-end p-4">
+<div class="flex justify-end">
   <mat-card class="flex flex-col gap-2">
     <span>
       Date du jour : {{ todayDate | date:'d/M/y' }}
     </span>
-    <span>Participant : {{''}}</span>
+    <span>Participant : {{(loginService.loggedUser$ | async)?.firstName}}</span>
   </mat-card>
 </div>
 <div>
@@ -12,23 +12,27 @@
     <div class="flex flex-col" style="flex-grow: 4;">
       <mat-form-field appearance="fill">
         <mat-label>Campus</mat-label>
-        <mat-select [formControl]="filterGroup.controls.campus" [value]="campusList[0]">
-          <mat-option *ngFor="let campus of campusList" [value]="campus">
-            {{campus}}
+        <mat-select [formControl]="filterGroup.controls.campus" [value]="campus[0]">
+          <mat-option *ngFor="let aCampus of campus" [value]="aCampus">
+            {{aCampus.name}}
           </mat-option>
         </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Le nom contient</mat-label>
+        <input matInput [formControl]="filterGroup.controls.search">
       </mat-form-field>
       <div class="flex gap-2 flex-wrap">
         <mat-form-field class="flex-grow" appearance="fill">
           <mat-label>Après le</mat-label>
-          <input matInput [matDatepicker]="picker">
+          <input matInput [formControl]="filterGroup.controls.startDate" [matDatepicker]="picker">
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="flex-grow" appearance="fill">
           <mat-label>Avant le</mat-label>
-          <input matInput [matDatepicker]="picker2">
+          <input matInput [formControl]="filterGroup.controls.endDate" [matDatepicker]="picker2">
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
@@ -52,9 +56,8 @@
         [checked]="filterGroup.controls.excursionPassed.value">
         Sorties passées
       </mat-checkbox>
-      <button mat-raised-button color="accent" type="submit" class="self-{{(breakpointService.isSmallDevice$ | async)? 'stretch':'start'}}">Rechercher</button>
     </div>
   </form>
 </div>
 
-<app-excursions-table class="mt-4" [excursions]="(filteredList$ | async) ?? undefined"></app-excursions-table>
+<app-excursions-table class="mt-4" [excursions]="(filteredList$ | async) ?? undefined" [currentParticipant]="(loginService.loggedUser$ | async)"></app-excursions-table>

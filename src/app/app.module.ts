@@ -11,7 +11,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { VillesComponent } from './core/villes/villes.component';
 import { CampusComponent } from './core/campus/campus.component';
 import { ProfileModule } from './core/profile/profile.module';
-import { SortieModule } from './core/sortie/sortie.module';
+import { ExcursionModule } from './core/excursion/excursion.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SortieModule } from './core/sortie/sortie.module';
     MatIconModule,
     MatSidenavModule,
     ProfileModule,
-    SortieModule
+    ExcursionModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
