@@ -10,7 +10,7 @@ import { LoginService } from './shared/services/login.service';
 export class AppComponent {
   constructor(public breakpointService: BreakpointService, public loginService: LoginService) { }
   navLinks: { link: string, label: string }[] = [{
-    link: "home",
+    link: "",
     label: "Accueil"
   }, {
     link: "villes",
@@ -19,7 +19,7 @@ export class AppComponent {
     link: "campus",
     label: "Campus"
   }, {
-    link: '/profile/'+this.loginService.loggedUser$.value?.participantId,
+    link: '/participant/'+this.loginService.loggedUser$.value?.participantId,
     label: "Mon profil"
   }
   ]

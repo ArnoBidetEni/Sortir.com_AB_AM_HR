@@ -10,9 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { VillesComponent } from './core/villes/villes.component';
 import { CampusComponent } from './core/campus/campus.component';
-import { ProfileModule } from './core/profile/profile.module';
 import { ExcursionModule } from './core/excursion/features/excursion-shell/excursion.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ParticipantModule } from './core/participant/features/participant-shell/participant.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    ProfileModule,
+    ParticipantModule,
     ExcursionModule,
     HttpClientModule
   ],

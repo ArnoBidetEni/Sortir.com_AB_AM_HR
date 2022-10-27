@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Participant } from 'src/app/shared/interfaces/participant';
-import { ParticipantService } from 'src/app/shared/services/participant.service';
+import { ParticipantService } from 'src/app/core/participant/data-access/participant.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-profile-display',
-  templateUrl: './profile-display.component.html',
-  styleUrls: ['./profile-display.component.scss']
+  selector: 'app-participant-display',
+  templateUrl: './participant-display.component.html',
+  styleUrls: ['./participant-display.component.scss']
 })
-export class ProfileDisplayComponent implements OnInit {
+export class ParticipantDisplayComponent implements OnInit {
   participantId$: BehaviorSubject<number> = new BehaviorSubject<number>(-1);
   participant$: Observable<Participant | undefined> = this.participantId$.pipe(
     switchMap(id => this.participantService.getParticipant(id))

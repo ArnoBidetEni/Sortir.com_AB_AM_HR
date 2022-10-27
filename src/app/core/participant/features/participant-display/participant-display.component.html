@@ -1,0 +1,9 @@
+<app-participant-data *ngIf="(participant$ | async) as participant;else userDontExists" [participant]="participant">
+</app-participant-data>
+
+<ng-template #userDontExists>
+  <p class="text-center mt-4">
+    Cet utilisateur n'existe pas.
+  </p>
+</ng-template>
+<button mat-stroked-button color="accent" class="mx-auto" [routerLink]="''">Retour</button>
