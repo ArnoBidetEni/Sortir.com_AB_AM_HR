@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Excursion, excursions } from '../interfaces/excursion';
+import { Excursion, excursions } from '../../../shared/interfaces/excursion';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

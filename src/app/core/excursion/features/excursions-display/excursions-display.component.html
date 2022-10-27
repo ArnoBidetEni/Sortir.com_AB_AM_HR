@@ -1,0 +1,14 @@
+<div class="flex justify-end">
+  <mat-card class="flex flex-col gap-2">
+    <span>
+      Date du jour : {{ todayDate | date:'d/M/y' }}
+    </span>
+    <span>Participant : {{(loginService.loggedUser$ | async)?.firstName}}</span>
+  </mat-card>
+</div>
+<div>
+  <p>Filtrer les sorties</p>
+  <app-excursions-filter></app-excursions-filter>
+</div>
+
+<app-excursions-table class="mt-4" [excursions]="(filteredList$ | async) ?? undefined" [currentParticipant]="(loginService.loggedUser$ | async)"></app-excursions-table>

@@ -1,0 +1,50 @@
+<form *ngIf="!!form" [formGroup]="form" class="flex gap-2 flex-wrap">
+  <div class="flex flex-col" style="flex-grow: 4;">
+    <mat-form-field appearance="fill">
+      <mat-label>Campus</mat-label>
+      <mat-select [formControl]="form.controls.campus" [value]="campus[0]">
+        <mat-option *ngFor="let aCampus of campus" [value]="aCampus">
+          {{aCampus.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Le nom contient</mat-label>
+      <input matInput [formControl]="form.controls.search">
+    </mat-form-field>
+    <div class="flex gap-2 flex-wrap">
+      <mat-form-field class="flex-grow" appearance="fill">
+        <mat-label>Après le</mat-label>
+        <input matInput [formControl]="form.controls.startDate" [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="flex-grow" appearance="fill">
+        <mat-label>Avant le</mat-label>
+        <input matInput [formControl]="form.controls.endDate" [matDatepicker]="picker2">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="flex flex-col gap-2 flex-grow">
+    <mat-checkbox [formControl]="form.controls.excursionOrganisator"
+      [checked]="form.controls.excursionOrganisator.value">
+      Sorties dont je suis l'organisateur/trice
+    </mat-checkbox>
+    <mat-checkbox [formControl]="form.controls.excursionSubscribed"
+      [checked]="form.controls.excursionSubscribed.value">
+      Sorties auxquelles je suis inscrit/e
+    </mat-checkbox>
+    <mat-checkbox [formControl]="form.controls.excursionNotSubscribed"
+      [checked]="form.controls.excursionNotSubscribed.value">
+      Sorties auxquelles je ne suis pas inscrit/e
+    </mat-checkbox>
+    <mat-checkbox [formControl]="form.controls.excursionPassed"
+      [checked]="form.controls.excursionPassed.value">
+      Sorties passées
+    </mat-checkbox>
+  </div>
+</form>

@@ -13,18 +13,20 @@ import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
-import { ExcursionsTableComponent } from './excursion-display/ui/excursions-table.component';
-import { ExcursionDisplayComponent } from './excursion-display/excursion-display.component';
-import { ExcursionCreateComponent } from './excursion-create/excursion-create.component';
-import { ExcursionUpdateComponent } from './excursion-update/excursion-update.component';
+import { ExcursionCreateComponent } from '../excursion-create/excursion-create.component';
+import { ExcursionUpdateComponent } from '../excursion-update/excursion-update.component';
+import { ExcursionsDisplayComponent } from '../excursions-display/excursions-display.component';
+import { ExcursionsTableComponent } from '../../ui/excursions-table/excursions-table.component';
 import { RouterModule } from '@angular/router';
+import { ExcursionsFilterComponent } from '../../ui/excursions-filter/excursions-filter.component';
 
 @NgModule({
   declarations: [
-    ExcursionDisplayComponent,
+    ExcursionsDisplayComponent,
     ExcursionCreateComponent,
     ExcursionUpdateComponent,
-    ExcursionsTableComponent
+    ExcursionsTableComponent,
+    ExcursionsFilterComponent
   ],
   imports: [
     BrowserModule,
