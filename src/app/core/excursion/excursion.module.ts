@@ -17,6 +17,7 @@ import { ExcursionsTableComponent } from './excursion-display/ui/excursions-tabl
 import { ExcursionDisplayComponent } from './excursion-display/excursion-display.component';
 import { ExcursionCreateComponent } from './excursion-create/excursion-create.component';
 import { ExcursionUpdateComponent } from './excursion-update/excursion-update.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ExcursionUpdateComponent } from './excursion-update/excursion-update.co
     MatSelectModule,
     MatOptionModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: []
