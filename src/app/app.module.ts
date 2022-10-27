@@ -13,12 +13,13 @@ import { CampusComponent } from './core/campus/campus.component';
 import { ExcursionModule } from './core/excursion/features/excursion-shell/excursion.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ParticipantModule } from './core/participant/features/participant-shell/participant.module';
+import { ExcursionDisplayComponent } from './core/excursion/features/excursion-display/excursion-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VillesComponent,
-    CampusComponent,
+    CampusComponent
   ],
   imports: [
     BrowserModule,

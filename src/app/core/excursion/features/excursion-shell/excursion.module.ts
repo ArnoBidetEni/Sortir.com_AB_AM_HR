@@ -15,18 +15,20 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { ExcursionCreateComponent } from '../excursion-create/excursion-create.component';
 import { ExcursionUpdateComponent } from '../excursion-update/excursion-update.component';
-import { ExcursionsDisplayComponent } from '../excursions-display/excursions-display.component';
+import { ExcursionListComponent } from '../excursion-list/excursion-list.component';
 import { ExcursionsTableComponent } from '../../ui/excursions-table/excursions-table.component';
 import { RouterModule } from '@angular/router';
 import { ExcursionsFilterComponent } from '../../ui/excursions-filter/excursions-filter.component';
+import { ExcursionDisplayComponent } from '../excursion-display/excursion-display.component';
 
 @NgModule({
   declarations: [
-    ExcursionsDisplayComponent,
+    ExcursionListComponent,
     ExcursionCreateComponent,
     ExcursionUpdateComponent,
     ExcursionsTableComponent,
-    ExcursionsFilterComponent
+    ExcursionsFilterComponent,
+    ExcursionDisplayComponent
   ],
   imports: [
     BrowserModule,
