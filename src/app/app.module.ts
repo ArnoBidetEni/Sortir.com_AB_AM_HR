@@ -8,17 +8,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { VillesComponent } from './core/villes/villes.component';
+import { CityComponent } from './core/city/city.component';
 import { CampusComponent } from './core/campus/campus.component';
 import { ExcursionModule } from './core/excursion/features/excursion-shell/excursion.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ParticipantModule } from './core/participant/features/participant-shell/participant.module';
-import { ExcursionDisplayComponent } from './core/excursion/features/excursion-display/excursion-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VillesComponent,
+    CityComponent,
     CampusComponent
   ],
   imports: [

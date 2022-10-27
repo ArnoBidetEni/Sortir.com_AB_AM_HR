@@ -1,0 +1,55 @@
+<p class="text-center text-xl">Afficher une sortie</p>
+<ng-container *ngIf="excursion$ | async as excursion; else notFound">
+  <div class="flex flex-wrap gap-4 justify-center">
+    <div class="grid grid-cols-2 gap-4">
+      <span class="opacity-50">Nom de la sortie :</span>
+      <span class="font-medium">{{excursion.name}}</span>
+      <span class="opacity-50">Date et heure de la sortie :</span>
+      <span class="font-medium">{{excursion.startTime | date:"DD/MM/YYYY hh:mm"}}</span>
+      <span class="opacity-50">Date limite d'inscription :</span>
+      <span class="font-medium">{{excursion.limitDateRegistration| date:"DD/MM/YYYY"}}</span>
+      <span class="opacity-50">Nombre de place :</span>
+      <span class="font-medium">{{excursion.maxRegistrationNumber}}</span>
+      <span class="opacity-50">Durée :</span>
+      <span class="font-medium">{{excursion.duration}} minutes :</span>
+      <span class="opacity-50">Description et infos :</span>
+      <span class="font-medium">{{"No data"}}</span>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <span class="opacity-50">Campus :</span>
+      <span class="font-medium">{{excursion.campus.name}}</span>
+      <span class="opacity-50">Lieu :</span>
+      <span class="font-medium">{{excursion.excursionPlace.name}}</span>
+      <span class="opacity-50">Rue :</span>
+      <span class="font-medium">{{excursion.excursionPlace.street}}</span>
+      <span class="opacity-50">Code postal :</span>
+      <span class="font-medium">{{excursion.excursionPlace.city.postCode}}</span>
+      <span class="opacity-50">Latitude :</span>
+      <span class="font-medium">{{excursion.excursionPlace.latitude}}</span>
+      <span class="opacity-50">Longitude :</span>
+      <span class="font-medium">{{excursion.excursionPlace.longitude}}</span>
+    </div>
+  </div>
+  <div class="flex flex-col items-center mt-6">
+    <span class=" text-xl mb-4">Liste des participants inscrits</span>
+    <table mat-table [dataSource]="excursion.participants" class="mat-elevation-z8">
+      <ng-container matColumnDef="login">
+        <th mat-header-cell *matHeaderCellDef> Identifiant </th>
+        <td mat-cell *matCellDef="let element"> {{element.login}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef> Utilisateur </th>
+        <td mat-cell *matCellDef="let element">{{element.firstName}} {{element.lastName}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['login', 'user']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['login', 'user'];"></tr>
+    </table>
+  </div>
+
+</ng-container>
+
+<ng-template #notFound></ng-template>
+<button mat-stroked-button color="accent" class="mx-auto mt-4" [routerLink]="'/excursion/list'">Retour</button>
+
