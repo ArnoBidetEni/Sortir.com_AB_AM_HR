@@ -1,1 +1,23 @@
-<p>profile-display works!</p>
+<ng-container *ngIf="(participant$ | async) as participant;else userDontExists">
+  <div class="flex  gap-4 flex-wrap items-center justify-center mt-4">
+    <div class="flex basis-64 justify-center max-w-xs">
+      <img src="./assets/default_avatar.PNG" alt="">
+    </div>
+    <div class="flex basis-64 flex-col gap-2 max-w-xs">
+      <span class="text-xl mx-auto">{{participant.login}}</span>
+      <div class="grid grid-cols-2 gap-2">
+        <span >Prénom :</span><span >{{participant.firstName}}</span>
+        <span >Nom :</span><span >{{participant.lastName}}</span>
+        <span >Téléphone :</span><span >{{participant.phoneNumber}}</span>
+        <span >Email :</span><span >{{participant.mail}}</span>
+        <span >Campus :</span><span >{{participant.campus.name}}</span>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #userDontExists>
+  <p class="text-center mt-4">
+    Cet utilisateur n'existe pas.
+  </p>
+</ng-template>
+<button mat-stroked-button color="accent" class="mx-auto" [routerLink]="''">Retour</button>

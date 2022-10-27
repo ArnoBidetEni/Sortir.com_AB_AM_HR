@@ -19,7 +19,7 @@ export class AppComponent {
     link: "campus",
     label: "Campus"
   }, {
-    link: "profile",
+    link: '/profile/'+this.loginService.loggedUser$.value?.participantId,
     label: "Mon profil"
   }
   ]

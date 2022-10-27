@@ -1,3 +1,5 @@
+import { Campus, campus0 } from "./campus"
+
 export interface Participant {
   participantId: number,
   login: string,
@@ -7,7 +9,8 @@ export interface Participant {
   mail: string,
   password: string,
   administrator: boolean,
-  active: boolean
+  active: boolean,
+  campus : Campus
 }
 
 
@@ -20,7 +23,8 @@ export const participant0 = {
   mail: "spinoza@gmail.com",
   password: "zekfnrjfrerrfoi",
   administrator: true,
-  active: true
+  active: true,
+  campus:campus0
 }
 export const participant1 = {
   participantId: 1,
@@ -31,7 +35,8 @@ export const participant1 = {
   mail: "remy@gmail.com",
   password: "jfrpfhqioafz",
   administrator: false,
-  active: true
+  active: true,
+  campus:campus0
 }
 export const participant2 = {
   participantId: 2,
@@ -42,7 +47,8 @@ export const participant2 = {
   mail: "remy@gmail.com",
   password: "jfrpfhqioafz",
   administrator: false,
-  active: true
+  active: true,
+  campus:campus0
 }
 export const participant3 = {
   participantId: 3,
@@ -53,7 +59,8 @@ export const participant3 = {
   mail: "bertrand@gmail.com",
   password: "4435434q4fz",
   administrator: false,
-  active: true
+  active: true,
+  campus:campus0
 }
 export const participant4 = {
   participantId: 4,
@@ -64,7 +71,8 @@ export const participant4 = {
   mail: "lafarge@gmail.com",
   password: "jzifziofseifso",
   administrator: false,
-  active: true
+  active: true,
+  campus:campus0
 }
 
 export const participantTestData: Participant[] = [

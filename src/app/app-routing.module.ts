@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: "campus", component: CampusComponent, canActivate: [LoginGuard] },
   {
     path: "profile", children: [
-      { path: "", component: ProfileDisplayComponent, pathMatch: "full", canActivate: [LoginGuard] },
+      { path: ":participantId", component: ProfileDisplayComponent, pathMatch: "full", canActivate: [LoginGuard] },
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent, canActivate: [LoginGuard] }
     ]
