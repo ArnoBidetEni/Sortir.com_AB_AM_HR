@@ -11,7 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { VillesComponent } from './core/villes/villes.component';
 import { CampusComponent } from './core/campus/campus.component';
 import { ProfileModule } from './core/profile/profile.module';
-import { ExcursionModule } from './core/excursion/excursion.module';
+import { ExcursionModule } from './core/excursion/features/excursion-shell/excursion.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
