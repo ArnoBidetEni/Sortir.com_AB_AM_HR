@@ -9,11 +9,11 @@ export class CityService {
 
   constructor() { }
 
-  getCity(cityId: number): Observable<City> {
-    return of(citiesTestData[0]);
+  getCity(cityId: number): Observable<City | undefined> {
+    return of(citiesTestData.find(el=>el.cityId === cityId));
   }
-  getCitys(cityId: number): Observable<City> {
-    return of(citiesTestData[0]);
+  getCitys(): Observable<City[]> {
+    return of(citiesTestData);
   }
   createCity(city: City): Observable<City> {
     return of(city);
