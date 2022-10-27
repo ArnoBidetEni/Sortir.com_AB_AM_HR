@@ -14,11 +14,11 @@ import { LoginService } from 'src/app/shared/services/login.service';
 import { ExcursionsFilterComponent } from '../../ui/excursions-filter/excursions-filter.component';
 
 @Component({
-  selector: 'app-excursions-display',
-  templateUrl: './excursions-display.component.html',
-  styleUrls: ['./excursions-display.component.scss']
+  selector: 'app-excursion-list',
+  templateUrl: './excursion-list.component.html',
+  styleUrls: ['./excursion-list.component.scss']
 })
-export class ExcursionsDisplayComponent implements OnInit {
+export class ExcursionListComponent implements OnInit {
   @ViewChild(ExcursionsFilterComponent,{static:true}) excursionsFilterComponent! : ExcursionsFilterComponent;
   todayDate = Date.now();
 
