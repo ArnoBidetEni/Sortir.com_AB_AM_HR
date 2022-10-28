@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CampusComponent } from './core/campus/campus.component';
+import { CampusListComponent } from './core/campus/features/campus-list/campus-list.component';
 import { CityListComponent } from './core/city/features/city-list/city-list.component';
 import { ExcursionDisplayComponent } from './core/excursion/features/excursion-display/excursion-display.component';
 import { ExcursionListComponent } from './core/excursion/features/excursion-list/excursion-list.component';
@@ -26,7 +26,7 @@ const routes: Routes = [
   },
 
   { path: "city/list", component: CityListComponent, canActivate: [LoginGuard] },
-  { path: "campus/list", component: CampusComponent, canActivate: [LoginGuard] },
+  { path: "campus/list", component: CampusListComponent, canActivate: [LoginGuard] },
   { path: "", redirectTo: "excursion/list", pathMatch:"full" },
 
 ];

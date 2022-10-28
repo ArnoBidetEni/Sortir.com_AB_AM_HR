@@ -1,0 +1,8 @@
+<div>
+  <p>Filtrer les campus</p>
+  <app-campus-filter></app-campus-filter>
+</div>
+
+<app-campus-table class="my-4" [cities]="(filteredList$ | async) ?? undefined" (onUpdateClicked)="addOrUpdate($event)" (onDeleteClicked)="onDeleteClicked($event)"></app-campus-table>
+
+<button mat-raised-button class="py-2" (click)="addOrUpdate(null)"><mat-icon>library_add</mat-icon> Ajouter un campus</button>

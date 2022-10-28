@@ -12,7 +12,7 @@ export class CityService {
   getCity(cityId: number): Observable<City | undefined> {
     return of(citiesTestData.find(el=>el.cityId === cityId));
   }
-  getCitys(): Observable<City[]> {
+  getCities(): Observable<City[]> {
     return of(citiesTestData);
   }
   createCity(city: City): Observable<City> {

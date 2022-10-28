@@ -8,16 +8,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { CampusComponent } from './core/campus/campus.component';
 import { ExcursionModule } from './core/excursion/features/excursion-shell/excursion.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ParticipantModule } from './core/participant/features/participant-shell/participant.module';
 import { CityModule } from './core/city/features/city-shell/city.module';
+import { CampusModule } from './core/campus/features/campus-shell/campus.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CampusComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +29,8 @@ import { CityModule } from './core/city/features/city-shell/city.module';
     ParticipantModule,
     ExcursionModule,
     HttpClientModule,
-    CityModule
+    CityModule,
+    CampusModule
   ],
   providers: [],
   bootstrap: [AppComponent]
