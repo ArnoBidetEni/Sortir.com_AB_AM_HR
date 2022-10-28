@@ -11,7 +11,7 @@ import { Status, StatusI } from 'src/app/shared/interfaces/status';
 import { BreakpointService } from 'src/app/shared/services/breakpoint.service';
 import { ExcursionService } from 'src/app/core/excursion/data-access/excursion.service';
 import { LoginService } from 'src/app/shared/services/login.service';
-import { ExcursionsFilterComponent } from '../../ui/excursions-filter/excursions-filter.component';
+import { ExcursionFilterComponent } from '../../ui/excursion-filter/excursion-filter.component';
 
 @Component({
   selector: 'app-excursion-list',
@@ -19,7 +19,7 @@ import { ExcursionsFilterComponent } from '../../ui/excursions-filter/excursions
   styleUrls: ['./excursion-list.component.scss']
 })
 export class ExcursionListComponent implements OnInit {
-  @ViewChild(ExcursionsFilterComponent,{static:true}) excursionsFilterComponent! : ExcursionsFilterComponent;
+  @ViewChild(ExcursionFilterComponent,{static:true}) excursionsFilterComponent! : ExcursionFilterComponent;
   todayDate = Date.now();
 
   constructor(private excursionService: ExcursionService, public breakpointService: BreakpointService, public loginService: LoginService) { }

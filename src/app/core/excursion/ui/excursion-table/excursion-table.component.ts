@@ -5,8 +5,8 @@ import { Participant } from 'src/app/shared/interfaces/participant';
 import { Status, StatusI } from 'src/app/shared/interfaces/status';
 
 @Component({
-  selector: 'app-excursions-table[excursions][currentParticipant]',
-  templateUrl: './excursions-table.component.html',
+  selector: 'app-excursion-table[excursions][currentParticipant]',
+  templateUrl: './excursion-table.component.html',
   styles: [
     ":host{overflow:auto} th,td{padding:0 1rem !important;}"
   ]

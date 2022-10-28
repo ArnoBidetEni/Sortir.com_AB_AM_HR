@@ -16,10 +16,11 @@ import { MatTableModule } from '@angular/material/table';
 import { ExcursionCreateComponent } from '../excursion-create/excursion-create.component';
 import { ExcursionUpdateComponent } from '../excursion-update/excursion-update.component';
 import { ExcursionListComponent } from '../excursion-list/excursion-list.component';
-import { ExcursionsTableComponent } from '../../ui/excursions-table/excursions-table.component';
+import { ExcursionsTableComponent } from '../../ui/excursion-table/excursion-table.component';
 import { RouterModule } from '@angular/router';
-import { ExcursionsFilterComponent } from '../../ui/excursions-filter/excursions-filter.component';
+import { ExcursionFilterComponent } from '../../ui/excursion-filter/excursion-filter.component';
 import { ExcursionDisplayComponent } from '../excursion-display/excursion-display.component';
+import { ExcursionDataComponent } from '../../ui/excursion-data/excursion-data.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,9 @@ import { ExcursionDisplayComponent } from '../excursion-display/excursion-displa
     ExcursionCreateComponent,
     ExcursionUpdateComponent,
     ExcursionsTableComponent,
-    ExcursionsFilterComponent,
-    ExcursionDisplayComponent
+    ExcursionFilterComponent,
+    ExcursionDisplayComponent,
+    ExcursionDataComponent
   ],
   imports: [
     BrowserModule,

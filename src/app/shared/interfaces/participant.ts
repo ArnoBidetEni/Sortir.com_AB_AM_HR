@@ -44,7 +44,7 @@ export const participant2 = {
   lastName: "Jojo",
   firstName: "Joestar",
   phoneNumber: "0508080810",
-  mail: "remy@gmail.com",
+  mail: "jojo@gmail.com",
   password: "jfrpfhqioafz",
   administrator: false,
   active: true,
