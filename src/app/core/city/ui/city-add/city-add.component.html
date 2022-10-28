@@ -1,0 +1,12 @@
+<form *ngIf="!!form" [formGroup]="form" class="flex gap-2 flex-wrap">
+  <div class="flex flex-col" style="flex-grow: 4;">
+    <mat-form-field appearance="fill">
+      <mat-label>Nom de la ville</mat-label>
+      <input matInput [formControl]="form.controls.name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Code postal de la ville</mat-label>
+      <input matInput [formControl]="form.controls.postCode">
+    </mat-form-field>
+  </div>
+</form>
