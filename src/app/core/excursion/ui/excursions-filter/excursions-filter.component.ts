@@ -1,14 +1,14 @@
-import { Component, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { campus } from 'src/app/shared/interfaces/campus';
-import { FilterForm, getFilterForm } from '../../utils/filter.form';
+import { ExcursionFilterForm, getExcursionFilterForm } from '../../utils/excursion-filter.form';
 
 @Component({
   selector: 'app-excursions-filter',
   templateUrl: './excursions-filter.component.html',
-  styleUrls: ['./excursions-filter.component.scss']
+  styles: ['']
 })
 export class ExcursionsFilterComponent implements OnInit {
-  form : FilterForm = getFilterForm();
+  form: ExcursionFilterForm = getExcursionFilterForm();
   campus = campus;
   constructor() { }
 

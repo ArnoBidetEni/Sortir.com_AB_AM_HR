@@ -1,7 +1,7 @@
 import { FormControl, FormGroup } from "@angular/forms";
 import { Campus, campus } from "src/app/shared/interfaces/campus";
 
-export const getFilterForm = () : FilterForm => new FormGroup({
+export const getExcursionFilterForm = () : ExcursionFilterForm => new FormGroup({
   campus: new FormControl(campus[0]),
   search: new FormControl(''),
   startDate: new FormControl<Date | null>(null),
@@ -12,7 +12,7 @@ export const getFilterForm = () : FilterForm => new FormGroup({
   excursionPassed: new FormControl<boolean>(false)
 });
 
-export type FilterForm  =FormGroup<{
+export type ExcursionFilterForm  =FormGroup<{
     campus: FormControl<Campus | null>,
     search: FormControl<string | null>,
     startDate: FormControl<Date | null>,
