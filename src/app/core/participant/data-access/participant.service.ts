@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Participant, participantTestData } from '../../../shared/interfaces/participant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ParticipantService {
+  readonly BASE_URL = environment.api_ip+environment.api_base_url+"/participants";
+  readonly EXTENSION = ".json";
 
   constructor(private httpClient : HttpClient) { }
 

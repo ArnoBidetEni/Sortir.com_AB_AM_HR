@@ -4,7 +4,7 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { City } from 'src/app/shared/interfaces/city';
 
-import { CityService } from 'src/app/shared/services/city.service';
+import { CityService } from 'src/app/core/city/data-access/city.service';
 import { CityFilterComponent } from '../../ui/city-filter/city-filter.component';
 import { CityAddDialogComponent } from '../city-add-dialog/city-add-dialog.component';
 

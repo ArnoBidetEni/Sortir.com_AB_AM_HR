@@ -15,14 +15,14 @@
     <div class="flex gap-2 flex-wrap">
       <mat-form-field class="flex-grow" appearance="fill">
         <mat-label>Après le</mat-label>
-        <input matInput [formControl]="form.controls.startDate" [matDatepicker]="picker">
+        <input matInput [formControl]="form.controls.afterDate" [matDatepicker]="picker">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field class="flex-grow" appearance="fill">
         <mat-label>Avant le</mat-label>
-        <input matInput [formControl]="form.controls.endDate" [matDatepicker]="picker2">
+        <input matInput [formControl]="form.controls.beforeDate" [matDatepicker]="picker2">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>

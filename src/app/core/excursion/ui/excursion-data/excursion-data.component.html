@@ -3,15 +3,15 @@
     <span class="opacity-50">Nom de la sortie :</span>
     <span class="font-medium">{{excursion.name}}</span>
     <span class="opacity-50">Date et heure de la sortie :</span>
-    <span class="font-medium">{{excursion.startTime | date:"dd/MM/YYYY hh:mm"}}</span>
+    <span class="font-medium">{{excursion.startTime | date:"dd/MM/yyyy hh:mm"}}</span>
     <span class="opacity-50">Date limite d'inscription :</span>
-    <span class="font-medium">{{excursion.limitDateRegistration| date:"dd/MM/YYYY"}}</span>
+    <span class="font-medium">{{excursion.limitDateRegistration| date:"dd/MM/yyyy"}}</span>
     <span class="opacity-50">Nombre de place :</span>
     <span class="font-medium">{{excursion.maxRegistrationNumber}}</span>
     <span class="opacity-50">Durée :</span>
     <span class="font-medium">{{excursion.duration}} minutes :</span>
     <span class="opacity-50">Description et infos :</span>
-    <span class="font-medium">{{"No data"}}</span>
+    <span class="font-medium">{{excursion.excursionData.length ?excursion.excursionData: "No data"}}</span>
   </div>
   <div class="grid grid-cols-2 gap-4">
     <span class="opacity-50">Campus :</span>

@@ -4,7 +4,7 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { Campus } from 'src/app/shared/interfaces/campus';
 
-import { CampusService } from 'src/app/shared/services/campus.service';
+import { CampusService } from 'src/app/core/campus/data-access/campus.service';
 import { CampusFilterComponent } from '../../ui/campus-filter/campus-filter.component';
 import { CampusAddDialogComponent } from '../campus-add-dialog/campus-add-dialog.component';
 

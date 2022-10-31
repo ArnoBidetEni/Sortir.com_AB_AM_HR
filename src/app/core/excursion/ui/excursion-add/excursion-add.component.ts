@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Excursion } from 'src/app/shared/interfaces/excursion';
 import { Status } from 'src/app/shared/interfaces/status';
-import { CampusService } from 'src/app/shared/services/campus.service';
+import { CampusService } from 'src/app/core/campus/data-access/campus.service';
 import { LoginService } from 'src/app/shared/services/login.service';
 import { PlaceService } from 'src/app/shared/services/place.service';
 import { ExcursionAddForm, getExcursionAddForm } from '../../utils/excursion-add.form';
