@@ -8,24 +8,24 @@ import { Campus, campus } from '../../../shared/interfaces/campus';
   providedIn: 'root'
 })
 export class CampusService {
-  readonly BASE_URL = environment.api_ip+environment.api_base_url+"/campuses";
+  readonly BASE_URL = environment.api_ip + environment.api_base_url + "/campuses";
   readonly EXTENSION = ".json";
 
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   getCampus(campusId: number): Observable<Campus | undefined> {
-    return this.httpClient.get<Campus>(this.BASE_URL+"/"+campusId+this.EXTENSION)
+    return this.httpClient.get<Campus>(this.BASE_URL + "/" + campusId + this.EXTENSION)
   }
   getCampuses(): Observable<Campus[]> {
-    return this.httpClient.get<Campus[]>(this.BASE_URL+this.EXTENSION)
+    return this.httpClient.get<Campus[]>(this.BASE_URL + this.EXTENSION)
   }
   createCampus(campus: Campus): Observable<Campus> {
-    return of(campus);
+    return this.httpClient.post<Campus>(this.BASE_URL + this.EXTENSION, campus)
   }
-  updateCampus(campusId: number, campus: Campus) {
-
+  updateCampus(campusId: number, campus: Campus): Observable<Campus> {
+    return this.httpClient.patch<Campus>(this.BASE_URL + "/" + campusId + this.EXTENSION, campus)
   }
-  deleteCampus(campusId: number) {
-
+  deleteCampus(campusId: number): Observable<void> {
+    return this.httpClient.delete<void>(this.BASE_URL + "/" + campusId + this.EXTENSION)
   }
 }

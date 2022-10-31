@@ -19,13 +19,13 @@ export class ParticipantService {
   getParticipants(): Observable<Participant[]> {
     return this.httpClient.get<Participant[]>(this.BASE_URL+this.EXTENSION);
   }
-  createParticipant(city: Participant): Observable<Participant> {
-    return of(city);
+  createParticipant(participant: Participant): Observable<Participant> {
+    return this.httpClient.post<Participant>(this.BASE_URL + this.EXTENSION, participant);
   }
-  updateParticipant(participantId: number, city: Participant) {
-
+  updateParticipant(participantId: number, participant: Participant) {
+    return this.httpClient.patch<Participant>(this.BASE_URL + "/" + participantId + this.EXTENSION, participant)
   }
   deleteParticipant(participantId: number) {
-
+    return this.httpClient.delete<void>(this.BASE_URL + "/" + participantId + this.EXTENSION)
   }
 }

@@ -16,8 +16,16 @@ export class ExcursionService {
   getExcursion(excursionId: number): Observable<Excursion | undefined> {
     return this.httpClient.get<Excursion>(this.BASE_URL+"/"+excursionId+this.EXTENSION)
   }
-
   getExcursions(): Observable<Excursion[]> {
     return this.httpClient.get<Excursion[]>(this.BASE_URL+this.EXTENSION)
+  }
+  createExcursion(excursion: Excursion): Observable<Excursion> {
+    return this.httpClient.post<Excursion>(this.BASE_URL + this.EXTENSION, excursion)
+  }
+  updateExcursion(excursionId: number, excursion: Excursion): Observable<Excursion> {
+    return this.httpClient.patch<Excursion>(this.BASE_URL + "/" + excursionId + this.EXTENSION, excursion)
+  }
+  deleteExcursion(excursionId: number): Observable<void> {
+    return this.httpClient.delete<void>(this.BASE_URL + "/" + excursionId + this.EXTENSION)
   }
 }
