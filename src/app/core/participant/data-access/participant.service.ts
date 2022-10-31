@@ -14,10 +14,10 @@ export class ParticipantService {
   constructor(private httpClient : HttpClient) { }
 
   getParticipant(participantId: number): Observable<Participant | undefined> {
-    return of(participantTestData.find(el=>el.participantId === participantId));
+    return this.httpClient.get<Participant>(this.BASE_URL+"/"+participantId+this.EXTENSION);
   }
   getParticipants(): Observable<Participant[]> {
-    return of(participantTestData);
+    return this.httpClient.get<Participant[]>(this.BASE_URL+this.EXTENSION);
   }
   createParticipant(city: Participant): Observable<Participant> {
     return of(city);

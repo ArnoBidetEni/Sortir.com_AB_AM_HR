@@ -9,10 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ExcursionModule } from './core/excursion/features/excursion-shell/excursion.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ParticipantModule } from './core/participant/features/participant-shell/participant.module';
 import { CityModule } from './core/city/features/city-shell/city.module';
 import { CampusModule } from './core/campus/features/campus-shell/campus.module';
+import { TokenInterceptor } from './shared/interceptors/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CampusModule } from './core/campus/features/campus-shell/campus.module'
     CityModule,
     CampusModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

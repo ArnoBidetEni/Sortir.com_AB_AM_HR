@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/shared/services/login.service';
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    login: new FormControl("", [Validators.required]),
+    username: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
     rememberMe: new FormControl(false)
   });
