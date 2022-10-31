@@ -21,17 +21,18 @@
   </ng-container>
 </mat-drawer-container>
 
-
 <ng-template #nav_content>
-  <ng-container *ngFor="let navLink of navLinks">
-    <button mat-button [routerLink]="navLink.link" [routerLinkActiveOptions]="{exact: true}"
-      routerLinkActive="active">{{navLink.label}}</button>
-  </ng-container>
-  <ng-container *ngIf="(loginService.isLoggedIn$ | async); else login">
+  <ng-container *ngIf="this.loginService.loggedUser$ | async as loggedUser; else login">
+    <ng-container *ngFor="let navLink of navLinks">
+      <button mat-button *ngIf="loggedUser.administrator  || !navLink.needAdmin && !loggedUser.administrator" [routerLink]="navLink.link" [routerLinkActiveOptions]="{exact: true}"
+        routerLinkActive="active">{{navLink.label}}</button>
+    </ng-container>
+    <button mat-button [routerLink]="'/participant/'+loggedUser.participantId" [routerLinkActiveOptions]="{exact: true}"
+      routerLinkActive="active">Mon profil</button>
     <button mat-button (click)="loginService.logout()">Se déconnecter</button>
   </ng-container>
   <ng-template #login>
-    <button mat-button [routerLink]="'participant/login'" [routerLinkActiveOptions]="{exact: true}"
+    <button mat-button [routerLink]="'/participant/login'" [routerLinkActiveOptions]="{exact: true}"
       routerLinkActive="active">Login</button>
   </ng-template>
 </ng-template>

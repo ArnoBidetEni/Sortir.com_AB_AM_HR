@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, combineLatest, of } from 'rxjs';
 import { switchMap, startWith } from 'rxjs/operators';
-import { campus } from 'src/app/shared/interfaces/campus';
-
 
 import { Excursion } from 'src/app/shared/interfaces/excursion';
 import { Participant } from 'src/app/shared/interfaces/participant';
@@ -21,13 +18,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./excursion-list.component.scss']
 })
 export class ExcursionListComponent implements OnInit {
-  @ViewChild(ExcursionFilterComponent,{static:true}) excursionsFilterComponent! : ExcursionFilterComponent;
+  @ViewChild(ExcursionFilterComponent, { static: true }) excursionsFilterComponent!: ExcursionFilterComponent;
 
   todayDate = Date.now();
 
   constructor(private excursionService: ExcursionService, public breakpointService: BreakpointService, public loginService: LoginService, public dialog: MatDialog) { }
 
-  campus = campus;
 
   filteredList$!: Observable<Excursion[]>;
 
@@ -43,12 +39,12 @@ export class ExcursionListComponent implements OnInit {
           .filter(excursion => (this.isInCreation(excursion.status) && this.isOrganisator(excursion, loggedUser!) || !this.isInCreation(excursion.status)))
           .filter(excursion => excursion.campus.campusId === formChange?.campus?.campusId)
           .filter(excursion => new RegExp(".*" + (formChange?.search ?? "") + ".*").test(excursion.name))
-          .filter(excursion => excursion.startTime >= formChange?.startDate!)
-          .filter(excursion => excursion.limitDateRegistration <= (formChange?.endDate ?? new Date(3000, 1)))
+          .filter(excursion => formChange?.afterDate ? new Date(excursion.startTime).getTime()>= formChange?.afterDate.getTime() : true)
+          .filter(excursion => new Date(excursion.startTime).getTime() <= (formChange?.beforeDate ?? new Date(3000, 1)).getTime())
           .filter(excursion => (excursion.organisator.participantId !== this.loginService.loggedUser$.value?.participantId) || formChange.excursionOrganisator)
           .filter(excursion => !this.isSubscribedToExcursion(loggedUser, excursion) || formChange.excursionSubscribed)
           .filter(excursion => this.isSubscribedToExcursion(loggedUser, excursion) || formChange.excursionNotSubscribed)
-          .filter(excursion => (excursion.startTime <= new Date(Date.now())) || !formChange.excursionPassed)
+          .filter(excursion => excursion.status.statusId != Status.PASSED.statusId || formChange.excursionPassed)
         )
       )
     );
@@ -67,9 +63,9 @@ export class ExcursionListComponent implements OnInit {
     return status.statusId === Status.IN_CREATION.statusId;
   }
 
-  addOrUpdate(city : Excursion | null){
+  addOrUpdate(city: Excursion | null) {
     this.dialog.open(ExcursionAddDialogComponent, {
-      data:city
+      data: city
     });
   }
 }

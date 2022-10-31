@@ -9,18 +9,18 @@ import { LoginService } from './shared/services/login.service';
 })
 export class AppComponent {
   constructor(public breakpointService: BreakpointService, public loginService: LoginService) { }
-  navLinks: { link: string, label: string }[] = [{
+  navLinks: { link: string, label: string, needAdmin : boolean }[] = [{
     link: "/",
-    label: "Accueil"
+    label: "Accueil",
+    needAdmin: false
   }, {
     link: "/city/list",
-    label: "Villes"
+    label: "Villes",
+    needAdmin: true
   }, {
     link: "/campus/list",
-    label: "Campus"
-  }, {
-    link: '/participant/'+this.loginService.loggedUser$.value?.participantId,
-    label: "Mon profil"
+    label: "Campus",
+    needAdmin: true
   }
   ]
 }
