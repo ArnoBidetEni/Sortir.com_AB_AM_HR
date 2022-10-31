@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{!!data ? "Modifier":"Ajouter" }} une sortie</h1>
+<div mat-dialog-content>
+  <app-excursion-add #excursionForm [excursion]="data"></app-excursion-add>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Annuler</button>
+  <button mat-button cdkFocusInitial [disabled]="!excursionForm.form?.valid">{{!!data ? "Modifier":"Ajouter" }}</button>
+</div>

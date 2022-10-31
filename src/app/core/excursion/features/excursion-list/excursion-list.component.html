@@ -12,3 +12,5 @@
 </div>
 
 <app-excursion-table class="mt-4" [excursions]="(filteredList$ | async) ?? undefined" [currentParticipant]="(loginService.loggedUser$ | async)"></app-excursion-table>
+
+<button mat-raised-button class="py-2" (click)="addOrUpdate(null)"><mat-icon>library_add</mat-icon> Ajouter une sortie</button>

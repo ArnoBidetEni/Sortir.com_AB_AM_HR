@@ -21,6 +21,8 @@ import { RouterModule } from '@angular/router';
 import { ExcursionFilterComponent } from '../../ui/excursion-filter/excursion-filter.component';
 import { ExcursionDisplayComponent } from '../excursion-display/excursion-display.component';
 import { ExcursionDataComponent } from '../../ui/excursion-data/excursion-data.component';
+import { ExcursionAddComponent } from '../../ui/excursion-add/excursion-add.component';
+import { ExcursionAddDialogComponent } from '../excursion-add-dialog/excursion-add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ExcursionDataComponent } from '../../ui/excursion-data/excursion-data.c
     ExcursionsTableComponent,
     ExcursionFilterComponent,
     ExcursionDisplayComponent,
-    ExcursionDataComponent
+    ExcursionDataComponent,
+    ExcursionAddComponent,
+    ExcursionAddDialogComponent
   ],
   imports: [
     BrowserModule,

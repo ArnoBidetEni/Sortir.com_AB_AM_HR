@@ -12,7 +12,7 @@ export class CampusService {
   getCampus(campusId: number): Observable<Campus | undefined> {
     return of(campus.find(el=>el.campusId === campusId));
   }
-  getCities(): Observable<Campus[]> {
+  getCampuses(): Observable<Campus[]> {
     return of(campus);
   }
   createCampus(campus: Campus): Observable<Campus> {

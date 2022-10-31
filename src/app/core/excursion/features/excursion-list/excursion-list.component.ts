@@ -12,6 +12,8 @@ import { BreakpointService } from 'src/app/shared/services/breakpoint.service';
 import { ExcursionService } from 'src/app/core/excursion/data-access/excursion.service';
 import { LoginService } from 'src/app/shared/services/login.service';
 import { ExcursionFilterComponent } from '../../ui/excursion-filter/excursion-filter.component';
+import { ExcursionAddDialogComponent } from '../excursion-add-dialog/excursion-add-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-excursion-list',
@@ -20,9 +22,10 @@ import { ExcursionFilterComponent } from '../../ui/excursion-filter/excursion-fi
 })
 export class ExcursionListComponent implements OnInit {
   @ViewChild(ExcursionFilterComponent,{static:true}) excursionsFilterComponent! : ExcursionFilterComponent;
+
   todayDate = Date.now();
 
-  constructor(private excursionService: ExcursionService, public breakpointService: BreakpointService, public loginService: LoginService) { }
+  constructor(private excursionService: ExcursionService, public breakpointService: BreakpointService, public loginService: LoginService, public dialog: MatDialog) { }
 
   campus = campus;
 
@@ -62,5 +65,11 @@ export class ExcursionListComponent implements OnInit {
 
   private isInCreation(status: StatusI) {
     return status.statusId === Status.IN_CREATION.statusId;
+  }
+
+  addOrUpdate(city : Excursion | null){
+    this.dialog.open(ExcursionAddDialogComponent, {
+      data:city
+    });
   }
 }

@@ -14,7 +14,7 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { CampusListComponent } from '../campus-list/campus-list.component';
+import { CampusesComponent } from '../campus-list/campus-list.component';
 import { CampusFilterComponent } from '../../ui/campus-filter/campus-filter.component';
 import { CampusTableComponent } from '../../ui/campus-table/campus-table.component';
 import { CampusAddDialogComponent } from '../campus-add-dialog/campus-add-dialog.component';
@@ -22,7 +22,7 @@ import { CampusAddComponent } from '../../ui/campus-add/campus-add.component';
 import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
-    CampusListComponent,
+    CampusesComponent,
     CampusFilterComponent,
     CampusTableComponent,
     CampusAddDialogComponent,

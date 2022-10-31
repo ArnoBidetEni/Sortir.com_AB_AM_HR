@@ -6,13 +6,14 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class ExcursionService {
+  serviceBaseUrl: string = "";
 
   constructor() { }
 
-  getExcursion(id : number): Observable<Excursion | undefined>{
-    return of(excursions.find(el=>el.excursionId === id))
+  getExcursion(id: number): Observable<Excursion | undefined> {
+    return of(excursions.find(el => el.excursionId === id))
   }
-  getExcursions(): Observable<Excursion[]>{
+  getExcursions(): Observable<Excursion[]> {
     return of(excursions)
   }
 }

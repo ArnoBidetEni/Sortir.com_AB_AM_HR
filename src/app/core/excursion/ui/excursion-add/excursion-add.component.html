@@ -1,0 +1,134 @@
+<form *ngIf="!!form" [formGroup]="form" class="flex gap-8 flex-wrap">
+  <div class="flex flex-col gap-2" style="flex-grow: 4;">
+    <!-- Excursion name -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nom de la sortie</mat-label>
+      <input matInput [formControl]="form.controls.name">
+      <mat-error *ngIf="form.controls.name.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.name, value_label:'Nom de la sortie'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <!-- Start time -->
+    <mat-form-field  appearance="fill">
+      <mat-label>Commence le</mat-label>
+      <input matInput [formControl]="form.controls.startTime" type="datetime-local">
+      <mat-error *ngIf="form.controls.startTime.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.startTime, value_label:'Commence le'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Excursion name -->
+    <mat-form-field appearance="fill">
+      <mat-label>Date limite d'inscription</mat-label>
+      <input matInput [formControl]="form.controls.limitDateRegistration" [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.controls.limitDateRegistration.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.limitDateRegistration, value_label:'Date limite d\'inscription'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <!--  -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de place</mat-label>
+      <input matInput [formControl]="form.controls.maxRegistrationNumber" type="number">
+      <mat-error *ngIf="form.controls.maxRegistrationNumber.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.maxRegistrationNumber, value_label:'Nombre de place'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Durée</mat-label>
+      <input matInput [formControl]="form.controls.duration" type="number">
+      <mat-hint>En minutes</mat-hint>
+      <mat-error *ngIf="form.controls.duration.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.duration, value_label:'Durée'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description et info</mat-label>
+      <textarea matInput [formControl]="form.controls.excursionData"></textarea>
+      <mat-error *ngIf="form.controls.excursionData.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.excursionData, value_label:'Description et info'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="flex flex-col gap-2" style="flex-grow: 4;">
+    <mat-form-field appearance="fill">
+      <mat-label>Campus</mat-label>
+      <mat-select [formControl]="form.controls.campus">
+        <mat-select-trigger>
+          {{ form.controls.campus.value?.name ?? '' }}
+        </mat-select-trigger>
+        <mat-option *ngFor="let campus of campuses$ | async" [value]="campus">{{campus.name}}</mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="form.controls.campus.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.campus, value_label:'Campus'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Lieu</mat-label>
+      <mat-select [formControl]="form.controls.excursionPlace">
+        <mat-select-trigger>
+          {{ form.controls.excursionPlace.value?.name }}
+        </mat-select-trigger>
+        <mat-option *ngFor="let place of places$ | async" [value]="place">{{place.name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.controls.excursionPlace.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.excursionPlace, value_label:'Lieu'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Rue</mat-label>
+      <input matInput disabled [value]="form.controls.excursionPlace.value?.street" type="string">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Code postal</mat-label>
+      <input matInput disabled [value]="form.controls.excursionPlace.value?.city?.postCode" type="number">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Latitude</mat-label>
+      <input matInput disabled [value]="form.controls.excursionPlace.value?.latitude" type="string">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Longitude</mat-label>
+      <input matInput disabled [value]="form.controls.excursionPlace.value?.longitude" type="number">
+    </mat-form-field>
+  </div>
+</form>
+
+<ng-template #errors let-control let-value_label="value_label">
+  <ng-container *ngIf="control.errors?.['required']">
+    "{{value_label}}" est requis.
+  </ng-container>
+  <ng-container *ngIf="control.errors?.['min']">
+    "{{value_label}}" ne peut pas être inférieu à 1.
+  </ng-container>
+  <ng-container *ngIf="control.errors?.['dateBefore']">
+    "{{value_label}}" ne peut pas être inférieur
+  </ng-container>
+</ng-template>

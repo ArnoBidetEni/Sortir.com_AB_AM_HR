@@ -13,7 +13,7 @@ import { CampusAddDialogComponent } from '../campus-add-dialog/campus-add-dialog
   templateUrl: './campus-list.component.html',
   styleUrls: ['./campus-list.component.scss']
 })
-export class CampusListComponent implements OnInit {
+export class CampusesComponent implements OnInit {
   @ViewChild(CampusFilterComponent, { static: true }) campusFilterComponent!: CampusFilterComponent;
 
   filteredList$!: Observable<Campus[]>;
@@ -21,7 +21,7 @@ export class CampusListComponent implements OnInit {
 
   ngOnInit(): void {
     this.filteredList$ = combineLatest([
-      this.campusService.getCities(),
+      this.campusService.getCampuses(),
       this.campusFilterComponent.form!.valueChanges.pipe(startWith(this.campusFilterComponent.form!.value))
     ]).pipe(
       switchMap(([list, formChange]) =>
