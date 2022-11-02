@@ -30,7 +30,10 @@ export class CityAddDialogComponent implements OnInit {
   onValidate() {
     let city: City = { name: this.cityForm.form!.value.name!, postCode: this.cityForm.form!.value.postCode! };
     if (this.isUpdating)
-      this.cityService.updateCity(this.data!.cityId!, city).subscribe(() => this.dialogRef.close(true));
+      this.cityService.updateCity(this.data!.cityId!, city).subscribe({
+        next: () => this.dialogRef.close(true),
+        error:(error) => console.error(error)
+      });
     else
       this.cityService.createCity(city).subscribe({
         next: () => this.dialogRef.close(true),
