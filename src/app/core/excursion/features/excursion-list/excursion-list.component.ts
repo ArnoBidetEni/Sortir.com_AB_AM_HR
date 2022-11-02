@@ -11,6 +11,7 @@ import { LoginService } from 'src/app/shared/services/login.service';
 import { ExcursionFilterComponent } from '../../ui/excursion-filter/excursion-filter.component';
 import { ExcursionAddDialogComponent } from '../excursion-add-dialog/excursion-add-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ExcursionEvent, ExcursionEventType } from '../../utils/excursion-event';
 
 @Component({
   selector: 'app-excursion-list',
@@ -37,9 +38,9 @@ export class ExcursionListComponent implements OnInit {
         of(list
           // If in creation but the user is the organisator, or if not in creation
           .filter(excursion => (this.isInCreation(excursion.status) && this.isOrganisator(excursion, loggedUser!) || !this.isInCreation(excursion.status)))
-          .filter(excursion => excursion.campus.campusId === formChange?.campus?.campusId)
+          .filter(excursion => !formChange?.campus ||  excursion.campus.campusId === formChange?.campus?.campusId)
           .filter(excursion => new RegExp(".*" + (formChange?.search ?? "") + ".*").test(excursion.name))
-          .filter(excursion => formChange?.afterDate ? new Date(excursion.startTime).getTime()>= formChange?.afterDate.getTime() : true)
+          .filter(excursion => formChange?.afterDate ? new Date(excursion.startTime).getTime() >= formChange?.afterDate.getTime() : true)
           .filter(excursion => new Date(excursion.startTime).getTime() <= (formChange?.beforeDate ?? new Date(3000, 1)).getTime())
           .filter(excursion => (excursion.organisator.participantId !== this.loginService.loggedUser$.value?.participantId) || formChange.excursionOrganisator)
           .filter(excursion => !this.isSubscribedToExcursion(loggedUser, excursion) || formChange.excursionSubscribed)
@@ -63,9 +64,36 @@ export class ExcursionListComponent implements OnInit {
     return status.statusId === Status.IN_CREATION.statusId;
   }
 
-  addOrUpdate(city: Excursion | null) {
+  addOrUpdate(excursion: Excursion | null) {
     this.dialog.open(ExcursionAddDialogComponent, {
-      data: city
+      data: excursion
     });
+  }
+
+  onExcursionEvent(excursionEvent: ExcursionEvent) {
+    switch (excursionEvent.type) {
+      case ExcursionEventType.SUBSCRIBE:
+        //@TODO
+        break;
+      case ExcursionEventType.PUBLISH:
+        this.changeExcursionStatus(excursionEvent.data, Status.OPEN);
+        break;
+      case ExcursionEventType.MODIFY:
+        this.addOrUpdate(excursionEvent.data);
+        break;
+      case ExcursionEventType.DESIST:
+        //@TODO
+        break;
+      case ExcursionEventType.CANCEL:
+        this.changeExcursionStatus(excursionEvent.data, Status.CANCELED);
+        break;
+      default:
+        break;
+    }
+  }
+
+  changeExcursionStatus(excursion: Excursion, status : StatusI){
+    excursion.status = status;
+    this.excursionService.updateExcursion(excursion.excursionId ?? -1, excursion).subscribe()
   }
 }

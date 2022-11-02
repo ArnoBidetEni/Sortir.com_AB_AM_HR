@@ -4,5 +4,6 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancelClick()">Annuler</button>
-  <button mat-button cdkFocusInitial [disabled]="!excursionForm.form?.valid">{{!!data ? "Modifier":"Ajouter" }}</button>
+  <button mat-button cdkFocusInitial [disabled]="!excursionForm.form?.valid || !excursionForm.form?.dirty" (click)="onValidate()">{{!!data ?
+    "Modifier":"Ajouter" }}</button>
 </div>

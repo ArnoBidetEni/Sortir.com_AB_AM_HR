@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Excursion, excursions } from '../../../shared/interfaces/excursion';
-import { Observable, of } from 'rxjs';
+import { Excursion } from '../../../shared/interfaces/excursion';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -23,7 +23,13 @@ export class ExcursionService {
     return this.httpClient.post<Excursion>(this.BASE_URL + this.EXTENSION, excursion)
   }
   updateExcursion(excursionId: number, excursion: Excursion): Observable<Excursion> {
-    return this.httpClient.patch<Excursion>(this.BASE_URL + "/" + excursionId + this.EXTENSION, excursion)
+    let value : any = excursion;
+    value.organisator = "/api/participants/"+excursion.organisator?.participantId;;
+    value.participants = excursion.participants.map(el=>"/api/participants/"+el.participantId);
+    value.place = "/api/places/"+excursion.excursionPlace?.placeId;
+    value.status = "/api/statuses/"+excursion.status?.statusId;
+    value.campus = "/api/campuses/"+excursion.campus?.campusId;
+    return this.httpClient.patch<Excursion>("/api/participants/" + "/" + excursionId + this.EXTENSION, value)
   }
   deleteExcursion(excursionId: number): Observable<void> {
     return this.httpClient.delete<void>(this.BASE_URL + "/" + excursionId + this.EXTENSION)

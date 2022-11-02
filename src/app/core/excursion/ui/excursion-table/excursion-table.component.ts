@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Excursion } from 'src/app/shared/interfaces/excursion';
 import { MatTableDataSource } from '@angular/material/table';
 import { Participant } from 'src/app/shared/interfaces/participant';
 import { Status, StatusI } from 'src/app/shared/interfaces/status';
-
+import { ExcursionEvent, ExcursionEventType } from "../../utils/excursion-event"
 @Component({
   selector: 'app-excursion-table[excursions][currentParticipant]',
   templateUrl: './excursion-table.component.html',
@@ -12,7 +12,8 @@ import { Status, StatusI } from 'src/app/shared/interfaces/status';
   ]
 })
 export class ExcursionsTableComponent implements OnInit {
-
+  Status = Status;
+  ExcursionEventType = ExcursionEventType;
   dataSource!: MatTableDataSource<Excursion>;
 
   @Input('excursions')
@@ -20,8 +21,9 @@ export class ExcursionsTableComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Excursion>(excursions);
   };
 
+  @Input('currentParticipant') currentParticipant: Participant | null = null;
 
-  @Input('currentParticipant') currentParticipant: Participant | null = null
+  @Output('onExcursionEvent') onExcursionEvent: EventEmitter<ExcursionEvent> = new EventEmitter<ExcursionEvent>();
 
   displayedColumns: string[] = [
     'name',
@@ -47,10 +49,10 @@ export class ExcursionsTableComponent implements OnInit {
   isOnGoing(status: StatusI) {
     return status.statusId === Status.ON_GOING.statusId;
   }
-  isPassed(status: StatusI){
+  isPassed(status: StatusI) {
     return status.statusId === Status.PASSED.statusId;
   }
-  isClosed(status: StatusI){
+  isClosed(status: StatusI) {
     return status.statusId === Status.CLOSED.statusId;
   }
   isOrganisator(excursion: Excursion, user: Participant | null) {
