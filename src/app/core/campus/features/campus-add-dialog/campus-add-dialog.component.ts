@@ -10,7 +10,7 @@ import { CampusAddComponent } from '../../ui/campus-add/campus-add.component';
   styleUrls: ['./campus-add-dialog.component.scss']
 })
 export class CampusAddDialogComponent implements OnInit {
-  @ViewChild("campusForm") campusForm!: CampusAddComponent;
+  @ViewChild(CampusAddComponent) campusAddComponent!: CampusAddComponent;
   isUpdating: boolean = false;
   constructor(
     private campusService: CampusService,
@@ -28,7 +28,7 @@ export class CampusAddDialogComponent implements OnInit {
   }
 
   onValidate() {
-    let campus: Campus = { name: this.campusForm.form!.value.name! };
+    let campus: Campus = { name: this.campusAddComponent.form!.value.name! };
     if (this.isUpdating)
       this.campusService.updateCampus(this.data!.campusId!, campus).subscribe({
         next: () => this.dialogRef.close(true),

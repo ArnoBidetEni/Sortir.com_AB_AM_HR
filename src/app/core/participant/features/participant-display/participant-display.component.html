@@ -1,9 +1,15 @@
-<app-participant-data *ngIf="(participant$ | async) as participant;else userDontExists" [participant]="participant">
-</app-participant-data>
+<div class="flex pt-4 justify-center max-w-xs self-center">
+  <img src="./assets/default_avatar.PNG" alt="">
+</div>
+<app-participant-add #participantForm *ngIf="(participant$ | async) as participant;else userDontExists" [participant]="participant" [readonly]="readonly"></app-participant-add>
 
 <ng-template #userDontExists>
   <p class="text-center mt-4">
     Cet utilisateur n'existe pas.
   </p>
 </ng-template>
-<button mat-stroked-button color="accent" class="mx-auto" [routerLink]="'/excursion/list'">Retour</button>
+<div>
+  <button mat-stroked-button color="accent" class="mx-auto" [routerLink]="'/excursion/list'">Retour</button>
+  <button mat-stroked-button color="primary" class="mx-auto" *ngIf="!readonly" (click)="cancel()">Annuler</button>
+  <button mat-stroked-button color="primary" class="mx-auto" *ngIf="readonly" (click)="readonly = !readonly">Modifier</button>
+</div>

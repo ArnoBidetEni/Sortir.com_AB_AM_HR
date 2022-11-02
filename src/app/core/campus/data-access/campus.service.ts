@@ -22,7 +22,7 @@ export class CampusService {
   createCampus(campus: Campus): Observable<Campus> {
     return this.httpClient.post<Campus>(this.BASE_URL + this.EXTENSION, campus)
   }
-  updateCampus(campusId: number, campus: Campus): Observable<Campus> {
+  updateCampus(campusId: number, campus: Partial<Campus>): Observable<Campus> {
     return this.httpClient.patch<Campus>(this.BASE_URL + "/" + campusId + this.EXTENSION, campus)
   }
   deleteCampus(campusId: number): Observable<void> {

@@ -58,13 +58,15 @@
             </ng-container>
           </ng-container>
           <ng-template #not_organisator>
-            <ng-container *ngIf="isSubscribedToExcursion(element) && !isOnGoing(element.status)">
-              -
-              <button mat-button (click)="onExcursionEvent.emit({type:ExcursionEventType.DESIST,data:element})">Se désister</button>
-            </ng-container>
-            <ng-container *ngIf="!isSubscribedToExcursion(element)">
-              -
-              <button mat-button (click)="onExcursionEvent.emit({type:ExcursionEventType.SUBSCRIBE,data:element})">S'inscrire</button>
+            <ng-container *ngIf="element.status.statusId === Status.OPEN.statusId">
+              <ng-container *ngIf="isSubscribedToExcursion(element) && !isOnGoing(element.status)">
+                -
+                <button mat-button (click)="onExcursionEvent.emit({type:ExcursionEventType.DESIST,data:element})">Se désister</button>
+              </ng-container>
+              <ng-container *ngIf="!isSubscribedToExcursion(element)">
+                -
+                <button mat-button (click)="onExcursionEvent.emit({type:ExcursionEventType.SUBSCRIBE,data:element})">S'inscrire</button>
+              </ng-container>
             </ng-container>
           </ng-template>
         </ng-container>

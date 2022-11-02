@@ -16,7 +16,7 @@ import { CampusAddDialogComponent } from '../campus-add-dialog/campus-add-dialog
 export class CampusesComponent implements OnInit {
   @ViewChild(CampusFilterComponent, { static: true }) campusFilterComponent!: CampusFilterComponent;
   loadCampuses$ = new BehaviorSubject<null>(null);
-  campuses$ = this.loadCampuses$.pipe(tap(() => console.log("is tapping")), switchMap(() => this.campusService.getCampuses()))
+  campuses$ = this.loadCampuses$.pipe(switchMap(() => this.campusService.getCampuses()))
   filteredList$!: Observable<Campus[]>;
   constructor(private campusService : CampusService, public dialog: MatDialog) { }
 

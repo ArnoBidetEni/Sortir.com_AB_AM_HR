@@ -12,6 +12,7 @@ import { ExcursionFilterComponent } from '../../ui/excursion-filter/excursion-fi
 import { ExcursionAddDialogComponent } from '../excursion-add-dialog/excursion-add-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ExcursionEvent, ExcursionEventType } from '../../utils/excursion-event';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-excursion-list',
@@ -20,7 +21,8 @@ import { ExcursionEvent, ExcursionEventType } from '../../utils/excursion-event'
 })
 export class ExcursionListComponent implements OnInit {
   @ViewChild(ExcursionFilterComponent, { static: true }) excursionsFilterComponent!: ExcursionFilterComponent;
-
+  loadExcursions$ = new BehaviorSubject<null>(null);
+  excursions$ = this.loadExcursions$.pipe(switchMap(() => this.excursionService.getExcursions()))
   todayDate = Date.now();
 
   constructor(private excursionService: ExcursionService, public breakpointService: BreakpointService, public loginService: LoginService, public dialog: MatDialog) { }
@@ -30,7 +32,7 @@ export class ExcursionListComponent implements OnInit {
 
   ngOnInit(): void {
     this.filteredList$ = combineLatest([
-      this.excursionService.getExcursions(),
+      this.excursions$,
       this.excursionsFilterComponent.form!.valueChanges.pipe(startWith(this.excursionsFilterComponent.form!.value)),
       this.loginService.loggedUser$
     ]).pipe(
@@ -73,7 +75,7 @@ export class ExcursionListComponent implements OnInit {
   onExcursionEvent(excursionEvent: ExcursionEvent) {
     switch (excursionEvent.type) {
       case ExcursionEventType.SUBSCRIBE:
-        //@TODO
+        this.subscribeToExcursion(excursionEvent.data);
         break;
       case ExcursionEventType.PUBLISH:
         this.changeExcursionStatus(excursionEvent.data, Status.OPEN);
@@ -82,7 +84,7 @@ export class ExcursionListComponent implements OnInit {
         this.addOrUpdate(excursionEvent.data);
         break;
       case ExcursionEventType.DESIST:
-        //@TODO
+        this.desistFromExcursion(excursionEvent.data);
         break;
       case ExcursionEventType.CANCEL:
         this.changeExcursionStatus(excursionEvent.data, Status.CANCELED);
@@ -95,5 +97,17 @@ export class ExcursionListComponent implements OnInit {
   changeExcursionStatus(excursion: Excursion, status : StatusI){
     excursion.status = status;
     this.excursionService.updateExcursion(excursion.excursionId ?? -1, excursion).subscribe()
+  }
+
+  subscribeToExcursion(excursion: Excursion){
+    this.excursionService.subscribeToExcursion(excursion.excursionId!, this.loginService.loggedUser$.value?.participantId!).subscribe({
+      next:()=>this.loadExcursions$.next(null)
+    });
+  }
+
+  desistFromExcursion(excursion: Excursion){
+    this.excursionService.desistFromExcursion(excursion.excursionId!, this.loginService.loggedUser$.value?.participantId!).subscribe({
+      next:()=>this.loadExcursions$.next(null)
+    });
   }
 }

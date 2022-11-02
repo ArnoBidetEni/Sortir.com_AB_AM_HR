@@ -10,7 +10,7 @@ import { CityAddComponent } from '../../ui/city-add/city-add.component';
   styleUrls: ['./city-add-dialog.component.scss']
 })
 export class CityAddDialogComponent implements OnInit {
-  @ViewChild("cityForm") cityForm!: CityAddComponent;
+  @ViewChild(CityAddComponent) cityAddComponent!: CityAddComponent;
   isUpdating: boolean = false;
   constructor(
     private cityService: CityService,
@@ -28,7 +28,7 @@ export class CityAddDialogComponent implements OnInit {
   }
 
   onValidate() {
-    let city: City = { name: this.cityForm.form!.value.name!, postCode: this.cityForm.form!.value.postCode! };
+    let city: City = { name: this.cityAddComponent.form!.value.name!, postCode: this.cityAddComponent.form!.value.postCode! };
     if (this.isUpdating)
       this.cityService.updateCity(this.data!.cityId!, city).subscribe({
         next: () => this.dialogRef.close(true),
