@@ -1,5 +1,5 @@
 export interface Campus {
-  campusId: number,
+  campusId?: number,
   name: string
 }
 

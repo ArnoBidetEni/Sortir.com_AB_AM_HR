@@ -1,5 +1,5 @@
 export interface StatusI {
-  statusId: number,
+  statusId?: number,
   name: string
 }
 

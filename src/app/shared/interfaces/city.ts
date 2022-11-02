@@ -1,5 +1,5 @@
 export interface City {
-    cityId: number,
+    cityId?: number,
     name: string,
     postCode: string
 }

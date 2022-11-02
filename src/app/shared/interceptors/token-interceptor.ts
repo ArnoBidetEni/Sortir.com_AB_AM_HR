@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+  PATCH_HEADER = { 'Content-Type': 'application/merge-patch+json' };
 
   constructor() { }
 
@@ -22,7 +18,11 @@ export class TokenInterceptor implements HttpInterceptor {
         setHeaders: { Authorization: `Bearer ${at}` }
       });
     }
-
+    if (/PATCH/.test(request.method)) {
+      request = request.clone({
+        setHeaders: this.PATCH_HEADER
+      });
+    }
     return next.handle(request);
   }
 }

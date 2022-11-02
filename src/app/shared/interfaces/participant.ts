@@ -1,7 +1,7 @@
 import { Campus, campus0 } from "./campus"
 
 export interface Participant {
-  participantId: number,
+  participantId?: number,
   login: string,
   lastName: string,
   firstName: string,

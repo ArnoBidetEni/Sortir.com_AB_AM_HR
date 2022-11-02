@@ -1,12 +1,29 @@
 <form *ngIf="!!form" [formGroup]="form" class="flex gap-2 flex-wrap">
   <div class="flex flex-col" style="flex-grow: 4;">
     <mat-form-field appearance="fill">
-      <mat-label>Nom de la ville</mat-label>
+      <mat-label>Nom</mat-label>
       <input matInput [formControl]="form.controls.name">
+      <mat-error *ngIf="form.controls.name.invalid">
+        <ng-container *ngTemplateOutlet="errors; context:{ $implicit:form.controls.name, value_label:'Nom'}">
+        </ng-container>
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Code postal de la ville</mat-label>
+      <mat-label>Code postal</mat-label>
       <input matInput [formControl]="form.controls.postCode">
+      <mat-error *ngIf="form.controls.postCode.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.postCode, value_label:'Code postal'}">
+        </ng-container>
+      </mat-error>
     </mat-form-field>
   </div>
 </form>
+<ng-template #errors let-control let-value_label="value_label">
+  <ng-container *ngIf="control.errors?.['required']">
+    "{{value_label}}" est requis.
+  </ng-container>
+  <ng-container *ngIf="control.errors?.['pattern']">
+    Pattern invalide.
+  </ng-container>
+</ng-template>

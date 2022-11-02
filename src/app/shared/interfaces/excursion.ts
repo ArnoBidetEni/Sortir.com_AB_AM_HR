@@ -4,7 +4,7 @@ import { Participant, participant0, participant1, participant2, participant3, pa
 import { Status, StatusI } from "./status";
 
 export interface Excursion {
-  excursionId: number,
+  excursionId?: number,
   name: string,
   startTime: Date,
   duration: number,

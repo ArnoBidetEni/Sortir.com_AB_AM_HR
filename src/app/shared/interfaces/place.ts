@@ -1,7 +1,7 @@
 import { City, city0 } from "./city"
 
 export interface Place {
-  placeId: number,
+  placeId?: number,
   name: string,
   street: string,
   city: City,
