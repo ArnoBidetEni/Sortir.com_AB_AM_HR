@@ -1,6 +1,17 @@
-<div class="flex pt-4 justify-center max-w-xs self-center">
-  <img src="./assets/default_avatar.PNG" alt="">
+<div class="flex gap-2 mx-auto mt-4 ">
+  <div class="h-20 w-20 overflow-hidden relative inline-block" style="border-radius: 50%;">
+    <img src="./assets/default_avatar.PNG" alt="" class="w-full h-full">
+  </div>
+  <div *ngIf="participantAddComponent?.form?.enabled" class="flex flex-col gap-2 justify-center">
+    <button mat-button class="self-center" (click)="fileInput.click()">
+      <mat-icon color="primary">edit</mat-icon>
+      Changer de photo
+    </button>
+    <ng-container *ngIf="file"><span class="ml-auto">{{file.name}}</span></ng-container>
+    <input hidden  mat-button #fileInput type="file" accept=".jpg,.png,.jpeg" (change)="onChange($event)">
+  </div>
 </div>
+
 <app-participant-add [participant]="participant$ | async">
 </app-participant-add>
 
