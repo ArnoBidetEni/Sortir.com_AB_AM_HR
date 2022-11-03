@@ -10,7 +10,8 @@ export interface Participant {
   password: string,
   administrator: boolean,
   active: boolean,
-  campus : Campus
+  campus : Campus,
+  picture?:string
 }
 
 
