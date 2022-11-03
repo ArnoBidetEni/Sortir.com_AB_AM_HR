@@ -22,7 +22,7 @@ export class StatusService {
   createStatus(status: Status): Observable<Status> {
     return this.httpClient.post<Status>(this.BASE_URL + this.EXTENSION, status);
   }
-  updateStatus(statusId: number, status: Status) {
+  updateStatus(statusId: number, status: Partial<Status>) {
     return this.httpClient.patch<Status>(this.BASE_URL + "/" + statusId + this.EXTENSION, status);
   }
   deleteStatus(statusId: number) {

@@ -22,7 +22,7 @@ export class CityService {
   createCity(city: City): Observable<City> {
     return this.httpClient.post<City>(this.BASE_URL + this.EXTENSION, city);
   }
-  updateCity(cityId: number, city: City) {
+  updateCity(cityId: number, city: Partial<City>) {
     return this.httpClient.patch<City>(this.BASE_URL + "/" + cityId + this.EXTENSION, city);
   }
   deleteCity(cityId: number) {

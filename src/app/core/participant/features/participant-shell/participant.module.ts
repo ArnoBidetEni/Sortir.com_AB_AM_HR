@@ -12,14 +12,16 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RouterModule } from '@angular/router';
-import { ParticipantDataComponent } from '../../ui/participant-data/participant-data.component';
+import { ParticipantAddComponent } from '../../ui/participant-add/participant-add.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
     ParticipantDisplayComponent,
-    ParticipantDataComponent
+    ParticipantAddComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,8 @@ import { ParticipantDataComponent } from '../../ui/participant-data/participant-
     MatButtonModule,
     MatCheckboxModule,
     RouterModule,
+    MatSelectModule,
+    MatOptionModule,
     NgxSkeletonLoaderModule
   ],
   providers: [],

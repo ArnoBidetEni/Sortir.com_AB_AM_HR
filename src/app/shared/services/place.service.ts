@@ -22,7 +22,7 @@ export class PlaceService {
   createPlace(place: Place): Observable<Place> {
     return this.httpClient.post<Place>(this.BASE_URL + this.EXTENSION, place);
   }
-  updatePlace(placeId: number, place: Place) {
+  updatePlace(placeId: number, place: Partial<Place>) {
     return this.httpClient.patch<Place>(this.BASE_URL + "/" + placeId + this.EXTENSION, place);
   }
   deletePlace(placeId: number) {

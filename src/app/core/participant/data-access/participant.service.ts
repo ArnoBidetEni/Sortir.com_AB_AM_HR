@@ -13,7 +13,7 @@ export class ParticipantService {
 
   constructor(private httpClient : HttpClient) { }
 
-  getParticipant(participantId: number): Observable<Participant | undefined> {
+  getParticipant(participantId: number): Observable<Participant> {
     return this.httpClient.get<Participant>(this.BASE_URL+"/"+participantId+this.EXTENSION);
   }
   getParticipants(): Observable<Participant[]> {
@@ -22,7 +22,7 @@ export class ParticipantService {
   createParticipant(participant: Participant): Observable<Participant> {
     return this.httpClient.post<Participant>(this.BASE_URL + this.EXTENSION, participant);
   }
-  updateParticipant(participantId: number, participant: Participant) {
+  updateParticipant(participantId: number, participant: Partial<Participant>) {
     return this.httpClient.patch<Participant>(this.BASE_URL + "/" + participantId + this.EXTENSION, participant)
   }
   deleteParticipant(participantId: number) {

@@ -1,0 +1,90 @@
+<form *ngIf="!!form" [formGroup]="form" class="flex gap-2 flex-wrap">
+  <div class="flex flex-col" style="flex-grow: 4;">
+    <!-- Login -->
+    <mat-form-field appearance="fill">
+      <mat-label>Login</mat-label>
+      <input matInput [formControl]="form.controls.login">
+      <mat-error *ngIf="form.controls.login.invalid">
+        <ng-container *ngTemplateOutlet="errors; context:{ $implicit:form.controls.login, value_label:'Login'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <!-- Last name -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input matInput [formControl]="form.controls.lastName">
+      <mat-error *ngIf="form.controls.lastName.invalid">
+        <ng-container *ngTemplateOutlet="errors; context:{ $implicit:form.controls.lastName, value_label:'Nom'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <!-- First name -->
+    <mat-form-field appearance="fill">
+      <mat-label>Prénom</mat-label>
+      <input matInput [formControl]="form.controls.firstName">
+      <mat-error *ngIf="form.controls.firstName.invalid">
+        <ng-container *ngTemplateOutlet="errors; context:{ $implicit:form.controls.firstName, value_label:'Prénom'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <!-- Phone number -->
+    <mat-form-field appearance="fill">
+      <mat-label>Téléphone</mat-label>
+      <input matInput [formControl]="form.controls.phoneNumber">
+      <mat-error *ngIf="form.controls.phoneNumber.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.phoneNumber, value_label:'Téléphone'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    </div>
+  <div class="flex flex-col" style="flex-grow: 4;">
+    <!-- Mail -->
+    <mat-form-field appearance="fill">
+      <mat-label>Mail</mat-label>
+      <input type="email" matInput [formControl]="form.controls.mail">
+      <mat-error *ngIf="form.controls.mail.invalid">
+        <ng-container *ngTemplateOutlet="errors; context:{ $implicit:form.controls.mail, value_label:'Mail'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <!-- Password -->
+    <mat-form-field appearance="fill">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" [formControl]="form.controls.password">
+      <mat-error *ngIf="form.controls.password.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.password, value_label:'Mot de passe'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <!-- Campus -->
+    <mat-form-field appearance="fill">
+      <mat-label>Campus</mat-label>
+      <mat-select [formControl]="form.controls.campus">
+        <mat-option *ngIf="form.controls.campus.value" [value]="form.controls.campus.value"> {{ form.controls.campus.value.name}}</mat-option>
+        <mat-option *ngFor="let campus of campuses$ | async" [value]="campus">{{campus.name}}</mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="form.controls.campus.invalid">
+        <ng-container
+          *ngTemplateOutlet="errors; context:{ $implicit:form.controls.campus, value_label:'Campus'}">
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <!-- Actif -->
+    <mat-checkbox [formControl]="form.controls.active"
+        [checked]="form.controls.active.value">
+        Actif
+      </mat-checkbox>
+  </div>
+</form>
+
+<ng-template #errors let-control let-value_label="value_label">
+  <ng-container *ngIf="control.errors?.['required']">
+    "{{value_label}}" est requis.
+  </ng-container>
+  <ng-container *ngIf="control.errors?.['pattern']">
+    Pattern invalide.
+  </ng-container>
+</ng-template>
