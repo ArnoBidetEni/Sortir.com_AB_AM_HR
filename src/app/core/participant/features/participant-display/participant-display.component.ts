@@ -16,7 +16,6 @@ export class ParticipantDisplayComponent implements OnInit {
   file: File | null = null;
   participantId$: BehaviorSubject<number> = new BehaviorSubject<number>(-1);
   participant$: Observable<Participant> = this.participantId$.pipe(
-    tap(() => console.log("isTapping")),
     switchMap(id => this.participantService.getParticipant(id))
   );
 

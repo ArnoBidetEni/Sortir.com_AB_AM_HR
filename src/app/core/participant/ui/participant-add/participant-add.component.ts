@@ -34,8 +34,8 @@ export class ParticipantAddComponent implements OnInit {
       login: this.receivedParticipant?.login ?? null,
       mail: this.receivedParticipant?.mail ?? null,
       phoneNumber: this.receivedParticipant?.phoneNumber ?? null,
-      active : false,
-      administrator : false,
+      active :  this.receivedParticipant?.active,
+      administrator : this.receivedParticipant?.administrator,
       participantId : this.receivedParticipant?.participantId ?? null,
       password : ""
     })

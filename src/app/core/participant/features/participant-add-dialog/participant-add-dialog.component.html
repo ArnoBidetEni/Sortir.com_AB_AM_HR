@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{isUpdating ? "Modifier":"Ajouter" }} un participant</h1>
+<div mat-dialog-content >
+  <app-participant-add #participantForm [participant]="data"></app-participant-add>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Annuler</button>
+  <button mat-button cdkFocusInitial [disabled]="!participantForm.form?.valid || !participantForm.form?.dirty" (click)="onValidate()">{{!!data ? "Modifier":"Ajouter" }}</button>
+</div>

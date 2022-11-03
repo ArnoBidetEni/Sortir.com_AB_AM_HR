@@ -15,13 +15,18 @@ import { RouterModule } from '@angular/router';
 import { ParticipantAddComponent } from '../../ui/participant-add/participant-add.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
+import { ParticipantTableComponent } from '../../ui/participant-table/participant-table.component';
+import { ParticipantAddDialogComponent } from '../participant-add-dialog/participant-add-dialog.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
     ParticipantDisplayComponent,
-    ParticipantAddComponent
+    ParticipantAddComponent,
+    ParticipantTableComponent,
+    ParticipantAddDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,11 @@ import { MatOptionModule } from '@angular/material/core';
     RouterModule,
     MatSelectModule,
     MatOptionModule,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    MatTableModule
+  ],
+  exports:[
+    ParticipantTableComponent
   ],
   providers: [],
   bootstrap: []

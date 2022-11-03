@@ -20,7 +20,10 @@ export class LoginService {
   loggedUser$: BehaviorSubject<Participant | null> = new BehaviorSubject<Participant | null>(null)
 
   constructor(private router: Router, private httpClient: HttpClient) {
-    this.me().pipe(first()).subscribe(el=>this.loggedUser$.next(el))
+    this.me().pipe(first()).subscribe({
+      next: el => {this.loggedUser$.next(el); console.log(this.loggedUser$.value)},
+      error: () => this.isLoggedIn$.next(false)
+    });
   }
 
   login(login: Partial<{ username: string | null, password: string | null, rememberMe: boolean | null }>) {
@@ -29,18 +32,19 @@ export class LoginService {
       tap((val) => localStorage.setItem(this.LS_AT, val.token)),
       tap((val) => localStorage.setItem(this.LS_RT, val.refresh_token)),
       tap(() => this.router.navigateByUrl("")),
-      tap(() => this.me().pipe(first()).subscribe(el=>this.loggedUser$.next(el)))
+      tap(() => this.me().subscribe(el => this.loggedUser$.next(el)))
     ).subscribe();
   }
 
   private me(): Observable<Participant> {
-    return this.httpClient.get<Participant>(this.BASE_URL + "/me");
+    return this.httpClient.get<Participant>(this.BASE_URL + "/me").pipe(tap((val)=>console.log(val)));
   }
 
   logout() {
     this.isLoggedIn$.next(false);
+    this.loggedUser$.next(null);
     localStorage.removeItem(this.LS_AT);
     localStorage.removeItem(this.LS_RT);
-    location.reload();
+    this.router.navigateByUrl("/")
   }
 }

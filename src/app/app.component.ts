@@ -21,6 +21,10 @@ export class AppComponent {
     link: "/campus/list",
     label: "Campus",
     needAdmin: true
+  }, {
+    link: "/admin",
+    label: "Admin",
+    needAdmin: true
   }
   ]
 }

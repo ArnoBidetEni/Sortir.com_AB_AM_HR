@@ -14,6 +14,7 @@ import { ParticipantModule } from './core/participant/features/participant-shell
 import { CityModule } from './core/city/features/city-shell/city.module';
 import { CampusModule } from './core/campus/features/campus-shell/campus.module';
 import { TokenInterceptor } from './shared/interceptors/token-interceptor';
+import { AdminModule } from './core/admin/features/admin-shell/admin.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TokenInterceptor } from './shared/interceptors/token-interceptor';
     ExcursionModule,
     HttpClientModule,
     CityModule,
-    CampusModule
+    CampusModule,
+    AdminModule
   ],
   providers: [
     {

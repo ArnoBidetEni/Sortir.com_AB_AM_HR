@@ -19,7 +19,7 @@ export class ParticipantService {
   getParticipants(): Observable<Participant[]> {
     return this.httpClient.get<Participant[]>(this.BASE_URL+this.EXTENSION);
   }
-  createParticipant(participant: Participant): Observable<Participant> {
+  createParticipant(participant: Partial<Participant>): Observable<Participant> {
     return this.httpClient.post<Participant>(this.BASE_URL + this.EXTENSION, participant);
   }
   updateParticipant(participantId: number, participant: Partial<Participant>) {

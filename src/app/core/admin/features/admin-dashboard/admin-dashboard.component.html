@@ -1,0 +1,10 @@
+<button mat-stroked-button class="mt-1 mx-auto self-center" (click)="fileInput.click()">
+  <mat-icon color="primary">upload</mat-icon>
+  Uploader un CSV d'utilisateurs
+</button>
+<input hidden mat-button #fileInput type="file" accept=".csv" (change)="onChange($event)">
+
+<app-participant-table class="mt-2 mx-auto" [participants]="participants$ | async" (onUpdateClicked)="editUser($event)"
+  (onDeleteClicked)="removeUser($event)" (onToggleUserActive)="onToggleUserActive($event)">
+
+</app-participant-table>
