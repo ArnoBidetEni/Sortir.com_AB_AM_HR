@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpInterceptor, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpRequest, HttpHandler, HttpInterceptor, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import { Observable, EMPTY } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   PATCH_HEADER = { 'Content-Type': 'application/merge-patch+json' };
   constructor(
+    private _snackBar: MatSnackBar
     // @Inject(forwardRef(() => LoginService)) private loginService: LoginService
     ) { }
 
@@ -25,17 +29,22 @@ export class TokenInterceptor implements HttpInterceptor {
       });
     }
     return next.handle(request)
-    // .pipe(
-    //   catchError((error: HttpErrorResponse) => {
-    //     if (error.error instanceof Error) {
-    //       console.error('An error occurred:', error.error.message);
-    //     } else {
-    //       console.error(`Backend returned code ${error.status}, body was: ${error.error}`);
-    //     }
-    //     if (error.status === 401)
-    //       this.loginService.logout();
-    //     return EMPTY;
-    //   })
-    // );
+    .pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.error instanceof Error) {
+          console.error('An error occurred:', error.error.message);
+        } else {
+          console.error(`Backend returned code ${error.status}, body was: ${error.error}`);
+        }
+        this._snackBar.open("An error occured",
+        "Okay",
+        {
+          panelClass: ['error-snackbar']
+        })
+        // if (error.status === 401)
+        //   this.loginService.logout();
+        return EMPTY;
+      })
+    );
   }
 }

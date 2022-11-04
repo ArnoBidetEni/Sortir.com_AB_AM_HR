@@ -2,8 +2,8 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { first, switchMap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Participant } from '../interfaces/participant';
@@ -20,24 +20,26 @@ export class LoginService {
   loggedUser$: BehaviorSubject<Participant | null> = new BehaviorSubject<Participant | null>(null)
 
   constructor(private router: Router, private httpClient: HttpClient) {
-    this.me().pipe(first()).subscribe({
-      next: el => {this.loggedUser$.next(el); console.log(this.loggedUser$.value)},
-      error: () => this.isLoggedIn$.next(false)
-    });
+    if (this.isLoggedIn$.value)
+      this.me().pipe(first()).subscribe({
+        next: el => { this.loggedUser$.next(el); console.log(this.loggedUser$.value) },
+        error: () => this.isLoggedIn$.next(false)
+      });
   }
 
-  login(login: Partial<{ username: string | null, password: string | null, rememberMe: boolean | null }>) {
-    this.httpClient.post<{ token: string, refresh_token: string }>(this.BASE_URL + "/login", login).pipe(
+  login(login: Partial<{ username: string | null, password: string | null, rememberMe: boolean | null }>): Observable<never> {
+    return this.httpClient.post<{ token: string, refresh_token: string }>(this.BASE_URL + "/login", login).pipe(
       tap(() => this.isLoggedIn$.next(true)),
       tap((val) => localStorage.setItem(this.LS_AT, val.token)),
       tap((val) => localStorage.setItem(this.LS_RT, val.refresh_token)),
       tap(() => this.router.navigateByUrl("")),
-      tap(() => this.me().subscribe(el => this.loggedUser$.next(el)))
-    ).subscribe();
+      tap(() => this.me().subscribe(el => this.loggedUser$.next(el))),
+      switchMap(() => of())
+    );
   }
 
   private me(): Observable<Participant> {
-    return this.httpClient.get<Participant>(this.BASE_URL + "/me").pipe(tap((val)=>console.log(val)));
+    return this.httpClient.get<Participant>(this.BASE_URL + "/me").pipe(tap((val) => console.log(val)));
   }
 
   logout() {

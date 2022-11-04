@@ -15,7 +15,7 @@ import { CityModule } from './core/city/features/city-shell/city.module';
 import { CampusModule } from './core/campus/features/campus-shell/campus.module';
 import { TokenInterceptor } from './shared/interceptors/token-interceptor';
 import { AdminModule } from './core/admin/features/admin-shell/admin.module';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +33,8 @@ import { AdminModule } from './core/admin/features/admin-shell/admin.module';
     HttpClientModule,
     CityModule,
     CampusModule,
-    AdminModule
+    AdminModule,
+    MatSnackBarModule
   ],
   providers: [
     {
