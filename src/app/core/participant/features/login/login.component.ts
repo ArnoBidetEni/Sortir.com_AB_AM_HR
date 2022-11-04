@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/shared/services/login.service';
@@ -7,7 +8,7 @@ import { LoginService } from 'src/app/shared/services/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  isLoading = false;
   loginForm = new FormGroup({
     username: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
@@ -19,6 +20,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginService.login(this.loginForm.value);
+    this.isLoading = true;
+    this.loginService.login(this.loginForm.value).subscribe({
+      next: () => {
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 401)
+          this.loginForm.setErrors({ "invalid_credentials": error.message })
+      }
+    }).add(()=>this.isLoading = false);
   }
 }

@@ -10,8 +10,12 @@
     <input [formControl]="loginForm.controls.password" type="password" matInput placeholder="Placeholder">
     <mat-icon matSuffix>vpn_key</mat-icon>
   </mat-form-field>
+  <mat-error [class.invisible]="!loginForm.errors?.['invalid_credentials']" class="mx-auto">Login ou mot de passe incorrect</mat-error>
   <div class="flex gap-4 justify-center">
-    <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="primary" class="self-center">Connexion</button>
+    <div class="flex gap-2 items-center">
+      <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="primary" class="self-center">Connexion</button>
+      <mat-spinner [class.invisible]="!isLoading" [diameter]="20"></mat-spinner>
+    </div>
     <div class="flex flex-col gap-2 items-end">
       <mat-checkbox [formControl]="loginForm.controls.rememberMe"
         [checked]="loginForm.controls.rememberMe.value">
