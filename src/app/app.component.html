@@ -22,6 +22,8 @@
 </mat-drawer-container>
 
 <ng-template #nav_content>
+  <button mat-button [routerLink]="'/excursion/list'" [routerLinkActiveOptions]="{exact: true}"
+      routerLinkActive="active">Accueil</button>
   <ng-container *ngIf="this.loginService.loggedUser$ | async as loggedUser; else login">
     <ng-container *ngFor="let navLink of navLinks">
       <button mat-button *ngIf="loggedUser.administrator  || !navLink.needAdmin && !loggedUser.administrator" [routerLink]="navLink.link" [routerLinkActiveOptions]="{exact: true}"

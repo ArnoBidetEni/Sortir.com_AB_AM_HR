@@ -10,10 +10,6 @@ import { LoginService } from './shared/services/login.service';
 export class AppComponent {
   constructor(public breakpointService: BreakpointService, public loginService: LoginService) { }
   navLinks: { link: string, label: string, needAdmin : boolean }[] = [{
-    link: "/",
-    label: "Accueil",
-    needAdmin: false
-  }, {
     link: "/city/list",
     label: "Villes",
     needAdmin: true

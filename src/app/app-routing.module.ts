@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: "excursion",  children: [
       { path: "", redirectTo: "list", pathMatch:"full" },
-      { path: "list", component: ExcursionListComponent, pathMatch: "full", canActivate: [LoginGuard] },
+      { path: "list", component: ExcursionListComponent, pathMatch: "full" },
       { path: ":excursionId", component: ExcursionDisplayComponent, pathMatch: "full", canActivate: [LoginGuard] }
     ]
   },
