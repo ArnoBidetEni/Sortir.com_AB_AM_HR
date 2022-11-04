@@ -17,6 +17,7 @@ import { ExcursionCreateComponent } from '../excursion-create/excursion-create.c
 import { ExcursionUpdateComponent } from '../excursion-update/excursion-update.component';
 import { ExcursionListComponent } from '../excursion-list/excursion-list.component';
 import { ExcursionsTableComponent } from '../../ui/excursion-table/excursion-table.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RouterModule } from '@angular/router';
 import { ExcursionFilterComponent } from '../../ui/excursion-filter/excursion-filter.component';
 import { ExcursionDisplayComponent } from '../excursion-display/excursion-display.component';
@@ -51,7 +52,8 @@ import { ExcursionAddDialogComponent } from '../excursion-add-dialog/excursion-a
     MatOptionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    RouterModule
+    RouterModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [],
   bootstrap: []

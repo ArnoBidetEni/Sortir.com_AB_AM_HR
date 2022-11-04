@@ -18,6 +18,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { ParticipantTableComponent } from '../../ui/participant-table/participant-table.component';
 import { ParticipantAddDialogComponent } from '../participant-add-dialog/participant-add-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -41,9 +42,10 @@ import { ParticipantAddDialogComponent } from '../participant-add-dialog/partici
     MatSelectModule,
     MatOptionModule,
     NgxSkeletonLoaderModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
-  exports:[
+  exports: [
     ParticipantTableComponent
   ],
   providers: [],

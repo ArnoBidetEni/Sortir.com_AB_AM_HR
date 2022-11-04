@@ -3,7 +3,7 @@
     <span>
       Date du jour : {{ todayDate | date:'d/M/y' }}
     </span>
-    <span>Participant : {{(loginService.loggedUser$ | async)?.firstName}}</span>
+    <span *ngIf="(loginService.loggedUser$ | async) as loggedUser">Participant : {{loggedUser.firstName}}</span>
   </mat-card>
 </div>
 <div>
@@ -11,6 +11,6 @@
   <app-excursion-filter></app-excursion-filter>
 </div>
 
-<app-excursion-table class="mt-4" *ngIf="filteredList$ | async as filteredList" [excursions]="filteredList" [currentParticipant]="(loginService.loggedUser$ | async)" (onExcursionEvent)="onExcursionEvent($event)"></app-excursion-table>
+<app-excursion-table class="mt-4" [excursions]="filteredList$ | async" [currentParticipant]="(loginService.loggedUser$ | async)" (onExcursionEvent)="onExcursionEvent($event)"></app-excursion-table>
 
 <button mat-raised-button class="py-2" (click)="addOrUpdate(null)"><mat-icon>library_add</mat-icon> Ajouter une sortie</button>

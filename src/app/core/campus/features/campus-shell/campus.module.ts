@@ -19,7 +19,9 @@ import { CampusFilterComponent } from '../../ui/campus-filter/campus-filter.comp
 import { CampusTableComponent } from '../../ui/campus-table/campus-table.component';
 import { CampusAddDialogComponent } from '../campus-add-dialog/campus-add-dialog.component';
 import { CampusAddComponent } from '../../ui/campus-add/campus-add.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 @NgModule({
   declarations: [
     CampusesComponent,
@@ -44,7 +46,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    RouterModule
+    RouterModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [],
   bootstrap: []

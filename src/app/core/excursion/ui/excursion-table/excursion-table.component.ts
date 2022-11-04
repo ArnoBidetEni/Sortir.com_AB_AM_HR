@@ -15,10 +15,16 @@ export class ExcursionsTableComponent implements OnInit {
   Status = Status;
   ExcursionEventType = ExcursionEventType;
   dataSource!: MatTableDataSource<Excursion>;
+  isLoading : boolean = false;
 
   @Input('excursions')
-  set excursions(excursions: Excursion[] | undefined) {
-    this.dataSource = new MatTableDataSource<Excursion>(excursions);
+  set excursions(excursions: Excursion[] | null) {
+    if (excursions) {
+      this.isLoading = false;
+      this.dataSource = new MatTableDataSource<Excursion>(excursions);
+    }else{
+      this.isLoading = true;
+    }
   };
 
   @Input('currentParticipant') currentParticipant: Participant | null = null;

@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
+<table *ngIf="!isLoading;else loading" mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Nom de la sortie </th>
     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
@@ -46,7 +46,8 @@
         <button mat-button
           (click)="onExcursionEvent.emit({type:ExcursionEventType.MODIFY,data:element})">Modifier</button>
         -
-        <button mat-button (click)="onExcursionEvent.emit({type:ExcursionEventType.PUBLISH,data:element})">Publier</button>
+        <button mat-button
+          (click)="onExcursionEvent.emit({type:ExcursionEventType.PUBLISH,data:element})">Publier</button>
       </ng-container>
       <ng-template #not_in_creation>
         <button mat-button [routerLink]="'/excursion/'+element.excursionId">Afficher</button>
@@ -54,18 +55,21 @@
           <ng-container *ngIf="isOrganisator(element, currentParticipant);else not_organisator">
             <ng-container *ngIf="element.status.statusId !== Status.CANCELED.statusId">
               -
-              <button mat-button (click)="onExcursionEvent.emit({type:ExcursionEventType.CANCEL,data:element})">Annuler</button>
+              <button mat-button
+                (click)="onExcursionEvent.emit({type:ExcursionEventType.CANCEL,data:element})">Annuler</button>
             </ng-container>
           </ng-container>
           <ng-template #not_organisator>
             <ng-container *ngIf="element.status.statusId === Status.OPEN.statusId">
               <ng-container *ngIf="isSubscribedToExcursion(element) && !isOnGoing(element.status)">
                 -
-                <button mat-button (click)="onExcursionEvent.emit({type:ExcursionEventType.DESIST,data:element})">Se désister</button>
+                <button mat-button (click)="onExcursionEvent.emit({type:ExcursionEventType.DESIST,data:element})">Se
+                  désister</button>
               </ng-container>
-              <ng-container *ngIf="!isSubscribedToExcursion(element)">
+              <ng-container *ngIf="!isSubscribedToExcursion(element) && currentParticipant">
                 -
-                <button mat-button (click)="onExcursionEvent.emit({type:ExcursionEventType.SUBSCRIBE,data:element})">S'inscrire</button>
+                <button mat-button
+                  (click)="onExcursionEvent.emit({type:ExcursionEventType.SUBSCRIBE,data:element})">S'inscrire</button>
               </ng-container>
             </ng-container>
           </ng-template>
@@ -73,9 +77,14 @@
       </ng-template>
     </td>
   </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell text-center" [attr.colspan]="displayedColumns.length">
+      No data matching the filter.
+    </td>
   </tr>
 </table>
+<ng-template #loading>
+  <ngx-skeleton-loader class="mx-auto w-20 h-20" count="2" [theme]="{'margin':'0 auto', 'height':'3rem', 'background-color':'#88888811' }" animation="progress-dark" ></ngx-skeleton-loader>
+</ng-template>

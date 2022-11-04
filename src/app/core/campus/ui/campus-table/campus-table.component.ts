@@ -9,14 +9,19 @@ import { Campus } from 'src/app/shared/interfaces/campus';
 })
 export class CampusTableComponent implements OnInit {
   dataSource!: MatTableDataSource<Campus>;
-
+  isLoading : boolean = false;
   @Input('cities')
-  set cities(cities: Campus[] | undefined) {
-    this.dataSource = new MatTableDataSource<Campus>(cities);
+  set cities(cities: Campus[] | null) {
+    if (cities) {
+      this.isLoading = false;
+      this.dataSource = new MatTableDataSource<Campus>(cities);
+    }else{
+      this.isLoading = true;
+    }
   };
 
-  @Output('onUpdateClicked') onUpdateClicked : EventEmitter<Campus> = new EventEmitter<Campus>();
-  @Output('onDeleteClicked') onDeleteClicked : EventEmitter<Campus> = new EventEmitter<Campus>();
+  @Output('onUpdateClicked') onUpdateClicked: EventEmitter<Campus> = new EventEmitter<Campus>();
+  @Output('onDeleteClicked') onDeleteClicked: EventEmitter<Campus> = new EventEmitter<Campus>();
 
   displayedColumns: string[] = [
     'name',

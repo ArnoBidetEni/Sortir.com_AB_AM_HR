@@ -6,6 +6,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ParticipantAddComponent } from 'src/app/core/participant/ui/participant-add/participant-add.component';
 import { ParticipantAddDialogComponent } from 'src/app/core/participant/features/participant-add-dialog/participant-add-dialog.component';
+import { CsvUploadService } from '../../data-access/csv-upload.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -17,7 +18,7 @@ export class AdminDashboardComponent implements OnInit {
   reloadParticipant: BehaviorSubject<null> = new BehaviorSubject<null>(null);
   participants$ = this.reloadParticipant.pipe(switchMap(() => this.participantService.getParticipants().pipe(map(val => val.filter(el => !el.administrator)))));
 
-  constructor(private participantService: ParticipantService, private matDialog: MatDialog) { }
+  constructor(private participantService: ParticipantService, private matDialog: MatDialog, private csvUploadService : CsvUploadService) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +31,7 @@ export class AdminDashboardComponent implements OnInit {
       alert("File is too big!");
       return;
     };
-    this.file = files[0];
+    this.csvUploadService.uploadCsv(files[0]).subscribe();
   }
 
   editUser(participant: Participant) {

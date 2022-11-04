@@ -20,6 +20,7 @@ import { CityTableComponent } from '../../ui/city-table/city-table.component';
 import { CityAddDialogComponent } from '../city-add-dialog/city-add-dialog.component';
 import { CityAddComponent } from '../../ui/city-add/city-add.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 @NgModule({
   declarations: [
     CityListComponent,
@@ -44,7 +45,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    RouterModule
+    RouterModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [],
   bootstrap: []

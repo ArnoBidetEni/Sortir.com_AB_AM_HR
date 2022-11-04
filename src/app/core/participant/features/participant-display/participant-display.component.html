@@ -5,7 +5,7 @@
   <ngx-skeleton-loader class="mx-auto w-20 h-20" [theme]="{'margin':'0 auto', 'height':'5rem','width':'5rem' }" animation="progress-dark" appearance="circle"></ngx-skeleton-loader>
 </ng-template>
 
-<div class="flex flex-col gap-2 justify-center">
+<div *ngIf="loginService.loggedUser$.value?.participantId === (participantId$ | async)" class="flex flex-col gap-2 justify-center">
   <button mat-stroked-button class="self-center" (click)="fileInput.click()">
     <mat-icon color="primary">edit</mat-icon>
     Changer de photo
@@ -24,12 +24,12 @@
 
 <div class="flex gap-2 self-center">
   <button mat-stroked-button color="accent" [routerLink]="'/excursion/list'">Retour</button>
-  <button mat-stroked-button color="primary" *ngIf="!participantAddComponent?.form?.disabled"
+  <button mat-stroked-button color="primary" *ngIf="!participantAddComponent?.form?.disabled && loginService.loggedUser$.value?.participantId === (participantId$ | async)"
     (click)="cancel()">Annuler</button>
-  <button mat-raised-button color="primary" *ngIf="!participantAddComponent?.form?.disabled" (click)="save()">
+  <button mat-raised-button color="primary" *ngIf="!participantAddComponent?.form?.disabled && loginService.loggedUser$.value?.participantId === (participantId$ | async)" (click)="save()">
     <mat-icon>save</mat-icon> Sauvegarder
   </button>
-  <button mat-stroked-button *ngIf="participantAddComponent?.form?.disabled"
+  <button mat-stroked-button *ngIf="participantAddComponent?.form?.disabled && loginService.loggedUser$.value?.participantId === (participantId$ | async)"
     (click)="setFormEnabled(true)">
     <mat-icon color="primary">edit</mat-icon> Modifier
   </button>

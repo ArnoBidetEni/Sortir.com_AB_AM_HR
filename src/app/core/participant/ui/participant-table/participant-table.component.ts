@@ -9,10 +9,15 @@ import { Participant } from 'src/app/shared/interfaces/participant';
 })
 export class ParticipantTableComponent implements OnInit {
   dataSource!: MatTableDataSource<Participant>;
-
+  isLoading : boolean = false;
   @Input('participants')
   set participants(participants: Participant[] | null) {
-    this.dataSource = new MatTableDataSource<Participant>(participants ?? []);
+    if (participants) {
+      this.isLoading = false;
+      this.dataSource = new MatTableDataSource<Participant>(participants);
+    }else{
+      this.isLoading = true;
+    }
   };
 
   @Output('onUpdateClicked') onUpdateClicked : EventEmitter<Participant> = new EventEmitter<Participant>();
@@ -28,7 +33,4 @@ export class ParticipantTableComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
-
 }
